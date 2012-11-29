@@ -37,6 +37,97 @@ describe PostService do
     end
   end
 
+  describe '::import_post_statistic' do
+    context 'given a new post' do
+      before do
+        @post_path = '/post/1'
+        expect(Post.where(path: @post_path)).to be_empty
+
+        PostService.import_post_statistic 'title',
+                                          @post_path,
+                                          Date.today,
+                                          Date.today,
+                                          'google.com',
+                                          1
+        @imported_posts = Post.where(path: @post_path)
+      end
+
+      it 'creates the post' do
+        expect(@imported_posts).to have(1).post
+      end
+
+      it 'creates a statistic for the post' do
+        expect(@imported_posts.first.statistics).to have(1).statistic
+      end
+    end
+
+    context 'given an existing post' do
+      before do
+        @post = FactoryGirl.create :post
+      end
+
+      context 'given a statistic from a source exists' do
+        before do
+          statistic = FactoryGirl.create :statistic, post: @post
+          @start_date = statistic.start_date
+          @end_date = statistic.end_date
+          @source = statistic.source
+        end
+
+        context 'when importing from existing date range' do
+          before do
+            PostService.import_post_statistic @post.title,
+                                              @post.path,
+                                              @start_date,
+                                              @end_date,
+                                              @source,
+                                              2
+            @post.reload
+          end
+
+          it 'does not re-create the statistic' do
+            expect(@post.statistics).to have(1).statistic
+          end
+
+          it 'updates the existing statistic' do
+            expect(@post.statistics.first.visit_count).to eq(2)
+          end
+
+          context 'when importing from a new source' do
+            before do
+              PostService.import_post_statistic @post.title,
+                                                @post.path,
+                                                @start_date,
+                                                @end_date,
+                                                'newsource.com',
+                                                2
+            end
+
+            it 'creates a statistic for the post' do
+              expect(@post.statistics).to have(2).statistics
+            end
+          end
+        end
+
+        context 'when importing from new date range' do
+          before do
+            PostService.import_post_statistic @post.title,
+                                              @post.path,
+                                              Date.new(1970,01,01),
+                                              Date.new(1970,01,01),
+                                              @source,
+                                              2
+            @post.reload
+          end
+
+          it 'creates a statistic for the post' do
+            expect(@post.statistics).to have(2).statistics
+          end
+        end
+      end
+    end
+  end
+
   describe '::import_post_statistics' do
     before do
       source_one = Provider::PostAnalytics.new({
@@ -49,7 +140,10 @@ describe PostService do
       })
       source_two = source_one.clone
       source_two.source = 'two'
+      source_two.start_date = Date.tomorrow
+      source_two.end_date = Date.tomorrow
       post_analytics = [source_one, source_two]
+
 
       @imported_statistics_count = PostService.import_post_statistics post_analytics
       @imported_posts = Post.find_all_by_title 'title'
