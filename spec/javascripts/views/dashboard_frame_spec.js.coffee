@@ -3,6 +3,8 @@ describe 'Carbometer.View.DashboardFrame', ->
     setFixtures("
       <div id='post-leaderboard'></div>
     ")
+    Carbometer.Posts = new Carbometer.Collection.Posts
+
     @frame = new Carbometer.View.DashboardFrame
 
   describe '#render', ->

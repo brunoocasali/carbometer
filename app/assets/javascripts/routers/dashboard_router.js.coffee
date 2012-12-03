@@ -5,5 +5,6 @@ class Carbometer.Router.Dashboard extends Backbone.Router
     'dashboard': 'show'
 
   show: ->
+    Carbometer.Posts = new Carbometer.Collection.Posts
     @dashboardFrame = new Carbometer.View.DashboardFrame
     @dashboardFrame.render()
