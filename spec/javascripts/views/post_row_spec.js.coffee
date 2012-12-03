@@ -26,7 +26,7 @@ describe 'Carbometer.View.PostRow', ->
 
   describe '#render', ->
     beforeEach ->
-      spyOn @view, 'renderAvatar'
+      spyOn(@view, 'gravatarURL').andReturn('http://fake.gravatar.com')
       @view.render()
       @viewContent = $(@view.el).html()
 
@@ -40,7 +40,7 @@ describe 'Carbometer.View.PostRow', ->
       expect(@viewContent).toContain(@post.get('author_name'))
 
     it 'renders the author avatar', ->
-      expect(@view.renderAvatar).toHaveBeenCalled()
+      expect(@viewContent).toContain('http://fake.gravatar.com')
 
   describe '#authorEmail', ->
     describe 'given an author name', ->

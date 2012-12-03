@@ -26,11 +26,12 @@ class Carbometer.View.PostRow extends Backbone.View
     @tweetCount.on 'change:count', @renderTweetCount, @
 
   render: ->
-    @authorName = @$('.post-author-name').text()
-    @avatar = @$('.avatar')
-    @renderAvatar()
     $(@el).html @template
       post: @post.attributes
+    @authorName = @post.get('author_name')
+    @avatar = @$('.avatar')
+    @renderAvatar()
+    @el
 
   renderAvatar: ->
     avatarURL = @gravatarURL(@authorEmail())
