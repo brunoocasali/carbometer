@@ -1,12 +1,25 @@
 class Carbometer.View.PostLeaderboard extends Backbone.View
   el: '#post-leaderboard'
-  postRows: null
+  postRows: []
 
   initialize: ->
-    @postRows = []
+    _.bindAll(this, 'add')
 
-  render: ->
-    @$('.post-row').each (index, post) =>
-      postRow = new Carbometer.View.PostRow el: post
-      postRow.render()
-      @postRows.push postRow
+    @resetPostRows()
+    @collection.bind 'reset', @resetPostRows
+    @collection.bind 'reset', @render
+
+  render: =>
+    $(@el).children('.post-row').remove()
+    _.each @postRows, (row, index) =>
+      $(@el).append(row.render())
+
+  resetPostRows: =>
+    @postRows = []
+    @collection.each(@add)
+
+  add: (post) ->
+    postRow = new Carbometer.View.PostRow
+      post: post
+
+    @postRows.push postRow

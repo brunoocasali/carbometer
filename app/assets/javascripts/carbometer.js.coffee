@@ -6,7 +6,7 @@ window.Carbometer =
   Helper: {}
 
   initialize: ->
-    dashboardRouter = new Carbometer.Router.Dashboard
+    Carbometer.DashboardRouter = new Carbometer.Router.Dashboard
 
     Backbone.history.start
       pushState: true
