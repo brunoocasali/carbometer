@@ -1,6 +1,9 @@
-body {
-  background-color: #EBEBEB;
-  font: 1em/1.5 'Museo Sans', sans-serif;
+html, body {
+  background-color: #000000;
+  font: 100% 'Museo Sans', sans-serif;
+  height: 100%;
+  margin: 0;
+  width: 100%;
 }
 
 a:link {
@@ -24,36 +27,15 @@ a:active {
 
 h1 {
   color: #F5F5F5;                      /* white smoke */
-  font-size: 2.5em;
+  font-size: 250%;
   text-transform:uppercase;
   margin-bottom: 0;
   padding: 0px 10px;
 }
 
-.eighty-percent {
-  margin: auto;
-  width: 80%;
-}
-
-.nine-col {
-  width: 73.62204724%;
-}
-
-.five-col {                            /* post leaderboard */
-  width: 55.0802139%;
-}
-
-.three-col {                           /* challenge */
-  width: 24.4%;
-}
-
-.four-col {                            /* buzz box, blog traffic graph, blog post bar chart */
-  width: 42.85026738%;
-}
-
 h2 {
   color: #678BBA;                     /* medium blue */
-  font-size: 1.65em;
+  font-size: 165%;
   margin-bottom: 0;
   padding-left: 10px;
 }
@@ -61,7 +43,7 @@ h2 {
 h3 {
   color: #DCDCDC;                      /* light gray */
   font-weight: bold;
-  font-size: 1.15em;
+  font-size: 115%;
   padding-left: 10px;
 }
 
@@ -71,12 +53,35 @@ p {
   width: 75%;
 }
 
+
 button {
   background:  #FF4500;           /* red-orange (C5 logo color)  */
   color: white;
   padding: 5px 10px;
   text-transform: uppercase;
-  }
+}
+
+/* % based on 1270px 12-col grid, 10px gutter */
+
+
+.nine-col {
+}
+
+.five-col {                            /* post leaderboard */
+  margin: .30%;                        /* 5px/1270px = .393701 */
+  width: 40.944882%;                   /* 525px/1270px = 41.338583% - .393701% =  40.944882% */
+}
+
+.four-col {                            /* buzz box, blog traffic graph, blog post bar chart */
+  margin: .30%;                        /* 5px/1270px = .393701 */
+  width: 32.677165%;                   /* 420px/1270px = 33.070866% - .393701% = 32.677165% */
+}
+
+.three-col {                           /* challenge */
+  margin: .30%;                        /* 5px/1270px = .393701 */
+  width: 24.409449%;                   /* 315px/1270px = 24.80315% - .393701% = 24.409449% */
+}
+
 
 /* this styling is specific to parts/base.html */
 
