@@ -35,17 +35,13 @@ describe PostsController do
 
         it 'returns post information' do
           @posts.each do |post|
+            expect(post).to have_key('id')
             expect(post).to have_key('title')
             expect(post).to have_key('path')
             expect(post).to have_key('published_at')
-            expect(post).to have_key('statistics')
-          end
-        end
-
-        it 'returns post statistics' do
-          statistics = @posts.map {|post| post['statistics']}.flatten
-          statistics.each do |statistic|
-            expect(statistic).to have_key('visit_count')
+            expect(post).to have_key('author_name')
+            expect(post).to have_key('user_id')
+            expect(post).to have_key('visit_sum')
           end
         end
       end

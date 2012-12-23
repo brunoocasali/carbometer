@@ -11,23 +11,6 @@
         %h1.widget-title Carbon Emitter Post Leaderboard
         %p.widget-subtitle last #{Post::DEFAULT_DAY_RANGE} days, starting #{(Date.today - Post::DEFAULT_DAY_RANGE.days).strftime('%m/%d/%y')}
 
-      - @posts.each do |post|
-        .post-row{'data-permalink' => "http://blog.carbonfive.com#{post.path.strip}"}
-          .avatar-col
-            %p.post-info +
-            .avatar
-          .title-info-col
-            %h2.post-title= post.title
-            %p.post-author-date
-              Posted on 
-              %strong= "#{post.published_at ? post.published_at.strftime('%B %e, %Y') : 'unknown'}" 
-              by 
-              %strong.post-author-name= "#{post.author ? post.author.name : 'unknown'}"
-          .statistics-col
-            %ul.counter
-              %li.views= post.visit_sum
-              %li.tweets 0
-
     #buzz-box.widget.four-col
       .widget-header
         %h1.widget-title Buzz Box
@@ -39,3 +22,11 @@
     #blog-post-bar-chart.widget.four-col
       .widget-header
         %h1.widget-title Blog Post Bar Chart
+
+:javascript
+  $(function() {
+    Carbometer.Posts.reset(#{@posts})
+    setInterval(function() {
+      Carbometer.Posts.fetch()
+    }, 60000)
+  });
