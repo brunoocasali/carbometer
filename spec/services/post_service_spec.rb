@@ -110,7 +110,7 @@ describe PostService do
       end
 
       it 'sets the publishing date for existing post' do
-        expect(@imported_post.published_at).to eq(@published_at)
+        expect(@imported_post.published_at.to_s).to eq(@published_at.to_s)
       end
     end
 
