@@ -22,17 +22,34 @@ class PostService
     all_post_analytics.each do |post_analytics|
       title = post_analytics.page_title
       path =  post_analytics.page_path
+      start_date = post_analytics.start_date
+      end_date = post_analytics.end_date
+      source = post_analytics.source
+      visits = post_analytics.visits
 
-      post = Post.find_or_create_by_title_and_path title, path
-      post.statistics.create({
-        source: post_analytics.source,
-        start_date: post_analytics.start_date,
-        end_date: post_analytics.end_date,
-        visit_count: post_analytics.visits
-      })
+      import_post_statistic title, path, start_date, end_date, source, visits
     end
 
     all_post_analytics.length
+  end
+
+  def self.import_post_statistic(title, path, start_date, end_date, source, visits)
+    post = Post.find_or_create_by_title_and_path title, path
+    existing_statistics = post.statistics.where(source: source,
+                                                start_date: start_date,
+                                                end_date: end_date)
+    stat_attrs = {
+      source: source,
+      start_date: start_date,
+      end_date: end_date,
+      visit_count: visits
+    }
+
+    if existing_statistics.any?
+      existing_statistics.update_all stat_attrs
+    else
+      post.statistics.create stat_attrs
+    end
   end
 
   def self.import_posts
