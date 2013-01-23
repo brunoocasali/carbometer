@@ -6,8 +6,4 @@ class Provider::PostFeed
     posts = JSON(response.body)['posts']
   end
 
-  class << self
-    alias_method :find_latest, :page
-  end
-
 end
