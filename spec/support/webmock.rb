@@ -34,4 +34,9 @@ def stub_requests_for_wordpress
     to_return(status: 200,
               body: "{\"found\":0,\"posts\":[]}",
               headers: {'Content-Type' => 'application/json'})
+
+  stub_request(:get, 'https://public-api.wordpress.com/rest/v1/sites/blog.carbonfive.com/posts/12345').
+    to_return(status: 200,
+              body: fixture_for('wordpress_single_post.json'),
+              headers: {'Content-Type' => 'application/json'})
 end

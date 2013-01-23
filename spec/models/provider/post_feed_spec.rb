@@ -25,4 +25,16 @@ describe Provider::PostFeed do
       end
     end
   end
+
+  describe '::post' do
+    before do
+      stub_requests_for(:wordpress)
+      @post = Provider::PostFeed.post('12345')
+    end
+
+    it 'returns current info for a post' do
+      expect(@post['author']['name']) == 'Jon Cooper'
+      expect(@post['comment_count']) == 2
+    end
+  end
 end
