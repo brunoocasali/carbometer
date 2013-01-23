@@ -55,14 +55,14 @@ class PostService
     feed = Provider::PostFeed.find_all
     posts = []
 
-    feed.entries.each do |feed_entry|
+    feed.each do |feed_entry|
       post = Post.find_or_create_by_title_and_path(
-        title: feed_entry.title,
-        path: URI(feed_entry.url).path
+        title: feed_entry['title'],
+        path: URI(feed_entry['URL']).path
       )
       posts << post
-      author = import_author feed_entry.author
-      post.published_at = feed_entry.published
+      author = import_author feed_entry['author']['name']
+      post.published_at = feed_entry['published']
       post.author = author
       post.save
     end

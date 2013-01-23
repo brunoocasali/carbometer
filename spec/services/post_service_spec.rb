@@ -165,16 +165,14 @@ describe PostService do
       @path = '/1/2/3/'
       @published_at = Time.now
 
-      feed_entry = double(
-        title: @title,
-        url: "http://blog.carbonfive.com#{@path}",
-        published: @published_at,
-        author: @author.name
-      )
-      feed = double(
-        entries: [feed_entry]
-      )
-      Provider::PostFeed.stub(:find_all).and_return(feed)
+      feed_entry = {
+        'title' => @title,
+        'url' => "http://blog.carbonfive.com#{@path}",
+        'published' => @published_at,
+        'author' => @author.name
+      }
+
+      Provider::PostFeed.stub(:find_all).and_return([feed_entry])
     end
 
     context 'given existing posts' do

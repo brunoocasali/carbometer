@@ -11,6 +11,7 @@ namespace :posts do
     p "Finished in #{time_elapsed} seconds"
   end
 
+  desc 'Update statistics for current set of posts'
   task update: :environment do
     p 'Updating posts...'
     time_elapsed = Benchmark.realtime do
