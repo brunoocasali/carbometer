@@ -1,8 +1,7 @@
 require 'spec_helper'
 
 describe PostService do
-
-  describe '::reset_posts' do
+  describe '.reset_posts' do
     before do
       PostService.stub!(:sleep)
       stub_requests_for(:google)
@@ -21,7 +20,7 @@ describe PostService do
     end
   end
 
-  describe '::update_posts' do
+  describe '.update_posts' do
     before do
       PostService.stub!(:sleep)
       stub_requests_for(:google)
@@ -37,7 +36,7 @@ describe PostService do
     end
   end
 
-  describe '::import_post_statistic' do
+  describe '.import_post_statistic' do
     context 'given a new post' do
       before do
         @post_path = '/post/1'
@@ -128,7 +127,7 @@ describe PostService do
     end
   end
 
-  describe '::import_post_statistics' do
+  describe '.import_post_statistics' do
     before do
       source_one = Provider::PostAnalytics.new({
         page_title: 'title',
@@ -159,7 +158,7 @@ describe PostService do
     end
   end
 
-  describe '::import_posts' do
+  describe '.import_posts' do
     before do
       @title = 'Title'
       @author = FactoryGirl.build :user
@@ -224,5 +223,4 @@ describe PostService do
       end
     end
   end
-
 end

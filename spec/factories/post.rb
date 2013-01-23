@@ -1,5 +1,4 @@
 FactoryGirl.define do
-
   factory :post do
     title 'title'
     path  '/a/b/c/'
@@ -28,5 +27,4 @@ FactoryGirl.define do
       }
     end
   end
-
 end
