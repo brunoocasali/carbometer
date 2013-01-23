@@ -55,7 +55,7 @@ class PostService
     feed = Provider::PostFeed.find_all
     posts = []
 
-    feed.each do |feed_entry|
+    feed.entries.each do |feed_entry|
       post = Post.find_or_create_by_title_and_path(
         title: feed_entry['title'],
         path: URI(feed_entry['URL']).path

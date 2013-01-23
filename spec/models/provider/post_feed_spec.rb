@@ -9,8 +9,20 @@ describe Provider::PostFeed do
     end
 
     it 'returns a feed with all its posts' do
-      expect(@feed.length).to equal(2)
+      expect(@feed.entries.length).to equal(2)
     end
   end
 
+  describe '::page' do
+    context 'by default' do
+      before do
+        stub_requests_for(:wordpress)
+        @feed = Provider::PostFeed.page
+      end
+
+     it 'returns the 2 latest posts' do
+        expect(@feed.length).to equal(2)
+      end
+    end
+  end
 end
