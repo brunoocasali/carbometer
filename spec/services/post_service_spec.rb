@@ -167,9 +167,9 @@ describe PostService do
 
       feed_entry = {
         'title' => @title,
-        'url' => "http://blog.carbonfive.com#{@path}",
+        'URL' => "http://blog.carbonfive.com#{@path}",
         'published' => @published_at,
-        'author' => @author.name
+        'author' => { 'name' => @author.name }
       }
 
       Provider::PostFeed.stub(:find_all).and_return([feed_entry])
