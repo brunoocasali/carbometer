@@ -7,7 +7,6 @@ gem 'jbuilder'
 gem 'haml'
 gem 'sass'
 gem 'google-api-client', '~> 0.4.5'
-gem 'feedzirra'
 gem 'gravtastic'
 gem 'httparty'
 
