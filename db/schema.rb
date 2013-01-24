@@ -30,10 +30,12 @@ ActiveRecord::Schema.define(:version => 20130220230803) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "posts", :force => true do |t|
-    t.string   "title",                        :null => false
-    t.string   "path",         :limit => 1024, :null => false
+    t.string   "title",                         :null => false
+    t.string   "path",          :limit => 1024, :null => false
     t.integer  "user_id"
     t.datetime "published_at"
+    t.integer  "comment_count"
+    t.integer  "wordpress_id"
   end
 
   add_index "posts", ["path"], :name => "index_posts_on_path"
