@@ -1,20 +1,15 @@
 class PostService
   def self.reset_posts
     Post.destroy_all
-    self.update_posts
+    self.update_post_analytics
   end
 
   def self.update_posts
-    count = 0
+    statistics_count = update_post_analytics
 
-    last_run_date = Statistic.maximum(:end_date) || Date.today - 30.days
-    ((last_run_date+1)..(Date.today-1)).each do |date|
-      sleep 30
-      post_analytics = Provider::PostAnalytics.find_all_by_date_range date, date
-      count += import_post_statistics post_analytics
-    end
+    update_post_comment_counts
 
-    count
+    statistics_count
   end
 
   def self.import_post_statistics(all_post_analytics)
@@ -63,6 +58,8 @@ class PostService
       posts << post
       author = import_author feed_entry['author']['name']
       post.published_at = feed_entry['published']
+      post.wordpress_id = feed_entry['ID']
+      post.comment_count = feed_entry['comment_count']
       post.author = author
       post.save
     end
@@ -77,5 +74,27 @@ class PostService
       name: name,
       email: email
     })
+
+  protected
+
+  def self.update_post_comment_counts
+    Post.all.each do |post|
+      post_info = Provider::PostFeed.post(post.wordpress_id)
+      post.comment_count = post_info['comment_count']
+      post.save
+    end
+  end
+
+  def self.update_post_analytics
+    count = 0
+
+    last_run_date = Statistic.maximum(:end_date) || Date.today - 30.days
+    ((last_run_date+1)..(Date.today-1)).each do |date|
+      sleep 30
+      post_analytics = Provider::PostAnalytics.find_all_by_date_range date, date
+      count += import_post_statistics post_analytics
+    end
+
+    count
   end
 end

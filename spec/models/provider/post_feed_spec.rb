@@ -34,7 +34,7 @@ describe Provider::PostFeed do
 
     it 'returns current info for a post' do
       expect(@post['author']['name']) == 'Jon Cooper'
-      expect(@post['comment_count']) == 2
+      expect(@post['comment_count']) == 10
     end
   end
 end
