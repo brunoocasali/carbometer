@@ -16,8 +16,8 @@ describe PostService do
       expect {Post.find(@existing_post.id)}.to raise_error(ActiveRecord::RecordNotFound)
     end
 
-    it 'creates new posts from analytics data' do
-      expect(@new_post).to_not be_nil
+    it 'ignores unknown posts from analytics data' do
+      expect(@new_post).to be_nil
     end
   end
 
@@ -135,9 +135,13 @@ describe PostService do
 
   describe '.import_post_statistics' do
     before do
+      @title = 'title'
+      @path = 'path'
+      FactoryGirl.create :post, :title => @title, :path => @path
+
       source_one = Provider::PostAnalytics.new({
-        page_title: 'title',
-        page_path: 'path',
+        page_title: @title,
+        page_path: @path,
         visits: 1,
         source: 'one',
         start_date: Date.today,
@@ -151,7 +155,7 @@ describe PostService do
 
 
       @imported_statistics_count = PostService.import_post_statistics post_analytics
-      @imported_posts = Post.find_all_by_title 'title'
+      @imported_posts = Post.find_all_by_title @title
     end
 
     it 'associates multiple sources to single post' do
@@ -176,7 +180,7 @@ describe PostService do
       feed_entry = {
         'title' => @title,
         'URL' => "http://blog.carbonfive.com#{@path}",
-        'published' => @published_at,
+        'date' => @published_at,
         'ID' => @wordpress_id,
         'comment_count' => @comment_count,
         'author' => { 'name' => @author.name }
@@ -188,6 +192,7 @@ describe PostService do
     context 'given existing posts' do
       before do
         @existing_post = FactoryGirl.create :post,
+          wordpress_id: @wordpress_id,
           title: @title,
           path: @path
         @author.save

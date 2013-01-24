@@ -25,17 +25,17 @@ def stub_requests_for_google
 end
 
 def stub_requests_for_wordpress
-  stub_request(:get, 'https://public-api.wordpress.com/rest/v1/sites/blog.carbonfive.com/posts/?page=1').
+  stub_request(:get, 'https://public-api.wordpress.com/rest/v1/sites/blog.carbonfive.com/posts/?type=post&page=1').
     to_return(status: 200,
               body: fixture_for('wordpress_posts.json'),
               headers: {'Content-Type' => 'application/json'})
 
-  stub_request(:get, 'https://public-api.wordpress.com/rest/v1/sites/blog.carbonfive.com/posts/?page=2').
+  stub_request(:get, 'https://public-api.wordpress.com/rest/v1/sites/blog.carbonfive.com/posts/?type=post&page=2').
     to_return(status: 200,
               body: "{\"found\":0,\"posts\":[]}",
               headers: {'Content-Type' => 'application/json'})
 
-  stub_request(:get, 'https://public-api.wordpress.com/rest/v1/sites/blog.carbonfive.com/posts/12345').
+  stub_request(:get, /^https:\/\/public\-api\.wordpress\.com\/rest\/v1\/sites\/blog\.carbonfive\.com\/posts\/[0-9]+/).
     to_return(status: 200,
               body: fixture_for('wordpress_single_post.json'),
               headers: {'Content-Type' => 'application/json'})

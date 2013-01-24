@@ -1,13 +1,18 @@
 class PostService
   def self.reset_posts
     Post.destroy_all
-    self.update_post_analytics
+
+    import_posts
+
+    update_post_analytics
   end
 
   def self.update_posts
-    statistics_count = update_post_analytics
+    import_posts
 
     update_post_comment_counts
+
+    statistics_count = update_post_analytics
 
     statistics_count
   end
@@ -28,10 +33,6 @@ class PostService
   end
 
   def self.import_post_statistic(title, path, start_date, end_date, source, visits)
-    post = Post.find_or_create_by_title_and_path title, path
-    existing_statistics = post.statistics.where(source: source,
-                                                start_date: start_date,
-                                                end_date: end_date)
     stat_attrs = {
       source: source,
       start_date: start_date,
@@ -39,6 +40,14 @@ class PostService
       visit_count: visits
     }
 
+    post = Post.find_by_title_and_path title, path
+    if post
+      post.statistics.create stat_attrs
+    end
+
+    existing_statistics = post.statistics.where(source: source,
+                                                start_date: start_date,
+                                                end_date: end_date)
     if existing_statistics.any?
       existing_statistics.update_all stat_attrs
     else
@@ -50,14 +59,16 @@ class PostService
     feed = Provider::PostFeed.find_all
     posts = []
 
-    feed.entries.each do |feed_entry|
-      post = Post.find_or_create_by_title_and_path(
-        title: feed_entry['title'],
-        path: URI(feed_entry['URL']).path
+    feed.each do |feed_entry|
+      post = Post.find_or_initialize_by_wordpress_id(
+        wordpress_id: feed_entry['ID']
       )
       posts << post
       author = import_author feed_entry['author']['name']
-      post.published_at = feed_entry['published']
+      post.title = feed_entry['title']
+      path = URI.parse(feed_entry['URL']).path
+      post.path = path
+      post.published_at = feed_entry['date']
       post.wordpress_id = feed_entry['ID']
       post.comment_count = feed_entry['comment_count']
       post.author = author

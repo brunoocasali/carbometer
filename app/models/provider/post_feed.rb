@@ -9,18 +9,18 @@ class Provider::PostFeed
       current_page += 1
 
       if feed
-        feed.entries << response
+        feed.concat response
       else
         feed = response
       end
     end
 
-    feed.entries.flatten
+    feed.flatten
   end
 
   def self.page(page_number = 1)
     page_url = "#{WORDPRESS_API}/posts/"
-    page_url = "#{page_url}?page=#{page_number}"
+    page_url = "#{page_url}?type=post&page=#{page_number}"
     response = HTTParty.get(page_url)
 
     posts = JSON(response.body)['posts']
