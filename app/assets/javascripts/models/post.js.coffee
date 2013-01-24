@@ -5,3 +5,4 @@ class Carbometer.Model.Post extends Backbone.Model
     @set published_at: attributes.published_at
     @set path: attributes.path
     @set visit_sum: attributes.visit_sum
+    @set comment_count: attributes.comment_count

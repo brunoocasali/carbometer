@@ -7,4 +7,5 @@ json.array!(posts) do |post|
   json.author_image post.author.gravatar_url
   json.user_id post.user_id
   json.visit_sum post.visit_sum
+  json.comment_count post.comment_count
 end
