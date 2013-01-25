@@ -3,19 +3,22 @@ class Provider::PostFeed
 
   def self.find_all
     current_page = 1
-    feed = nil
+    unless @feed
+      feed = nil
 
-    while response = page(current_page)
-      current_page += 1
+      while response = page(current_page)
+        current_page += 1
 
-      if feed
-        feed.concat response
-      else
-        feed = response
+        if feed
+          feed.concat response
+        else
+          feed = response
+        end
       end
-    end
 
-    feed.flatten
+      @feed = feed.flatten
+    end
+    @feed
   end
 
   def self.page(page_number = 1)

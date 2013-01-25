@@ -89,9 +89,11 @@ class PostService
   protected
 
   def self.update_post_comment_counts
+    all_post_info = Provider::PostFeed.find_all
+
     Post.all.each do |post|
-      post_info = Provider::PostFeed.post(post.wordpress_id)
-      post.comment_count = post_info['comment_count']
+      post_info = all_post_info.select { |post_update| post_update['ID'] = post.wordpress_id }
+      post.comment_count = post_info.first['comment_count']
       post.save
     end
   end

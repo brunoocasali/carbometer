@@ -38,7 +38,7 @@ describe PostService do
     end
 
     it 'updates comment counts' do
-      Post.find_by_id(@existing_post.id).comment_count.should == 10
+      Post.find_by_id(@existing_post.id).comment_count.should == 12
     end
   end
 
