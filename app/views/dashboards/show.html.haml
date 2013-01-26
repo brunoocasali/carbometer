@@ -14,11 +14,10 @@
 
 :javascript
   $(function() {
-    // Carbometer.Posts.reset(#{@posts})
-    // setInterval(function() {
-    //   Carbometer.Posts.fetch()
-    // }, 60000)
-    Carbometer.Posts.reset([{"id":2895,"title":"Using Open Source Static Libraries in Xcode 4","path":"/2011/04/04/using-open-source-static-libraries-in-xcode-4/","published_at":"April 04, 2011","author_name":"Jonah Williams","user_id":4,"visit_sum":"2442"},{"id":2897,"title":"Customizing the iOS keyboard","path":"/2012/03/12/customizing-the-ios-keyboard/","published_at":"March 12, 2012","author_name":"Jonah Williams","user_id":4,"visit_sum":"1571"},{"id":2900,"title":"Abusing UIViewControllers","path":"/2011/03/09/abusing-uiviewcontrollers/","published_at":"March 09, 2011","author_name":"Jonah Williams","user_id":4,"visit_sum":"879"},{"id":3389,"title":"Keeping Domain Models Cohesive with Collaborators","path":"/2013/01/21/keeping-domain-models-cohesive-with-collaborators/","published_at":"January 21, 2013","author_name":"Jared Carroll","user_id":3,"visit_sum":"793"},{"id":2910,"title":"Running Xcode 4 unit tests from the command line","path":"/2011/04/06/running-xcode-4-unit-tests-from-the-command-line/","published_at":"April 06, 2011","author_name":"Jonah Williams","user_id":4,"visit_sum":"592"},{"id":2896,"title":"Building Xcode 4 projects from the command line","path":"/2011/04/06/building-xcode-4-projects-from-the-command-line/","published_at":"April 06, 2011","author_name":"Jonah Williams","user_id":4,"visit_sum":"582"},{"id":2907,"title":"Vim Text Objects: The Definitive Guide","path":"/2011/10/17/vim-text-objects-the-definitive-guide/","published_at":"October 17, 2011","author_name":"Jared Carroll","user_id":3,"visit_sum":"545"},{"id":2941,"title":"Does My Rails App Need a Service Layer?","path":"/2012/01/10/does-my-rails-app-need-a-service-layer/","published_at":"January 10, 2012","author_name":"Jared Carroll","user_id":3,"visit_sum":"510"}]);
+    Carbometer.Posts.reset(#{@posts})
+    setInterval(function() {
+      Carbometer.Posts.fetch()
+    }, 60000)
 
     // TODO: Move this into JS file (scales text across window sizes)
     $('h2, .post-author-date').fitText(3.5);
