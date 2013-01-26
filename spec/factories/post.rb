@@ -1,5 +1,4 @@
 FactoryGirl.define do
-
   factory :post do
     title 'title'
     path  '/a/b/c/'
@@ -8,6 +7,14 @@ FactoryGirl.define do
     trait :statistics do
       statistics {
         FactoryGirl.create_list :statistic, 10
+      }
+    end
+
+    trait :with_statistic do
+      statistics {
+        [
+          FactoryGirl.create(:statistic)
+        ]
       }
     end
 
@@ -20,12 +27,4 @@ FactoryGirl.define do
       }
     end
   end
-
-  factory :statistic do
-    source      'google.com'
-    start_date  {Date.today - Post::DEFAULT_DAY_RANGE.days}
-    end_date    {Date.today}
-    visit_count {rand(1...100)}
-  end
-
 end
