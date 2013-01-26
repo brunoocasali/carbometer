@@ -3,7 +3,7 @@ defaults: &defaults
   encoding: unicode
   pool: 5
   host: localhost
-  username: postgres
+  username: blaketemp
   password:
   min_messages: warning
 

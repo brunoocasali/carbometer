@@ -2,7 +2,6 @@ class Carbometer.View.PostRow extends Backbone.View
   className: 'post-row'
   template: _.template("
       <div class='avatar-col'>
-        <p class='post-info'>+</p>
         <div class='avatar'></div>
       </div>
       <div class='title-info-col'>
@@ -42,7 +41,7 @@ class Carbometer.View.PostRow extends Backbone.View
     "#{firstName}@carbonfive.com"
 
   gravatarURL: (email) ->
-    Gravtastic email
+    Gravtastic email, size: 512
 
   renderTweetCount: ->
     @$('.tweets').text("#{@tweetCount.get('count')}")
