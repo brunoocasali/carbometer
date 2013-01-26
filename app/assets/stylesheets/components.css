@@ -74,6 +74,8 @@
   position: relative;
   left: 10vw;
   margin: 0 10px;
+  padding-top: 1vw;
+  padding-left: 1vw;
 }
 
 .post-title {
@@ -98,6 +100,12 @@
 
 .statistics {
   margin: 0 10px;
+}
+
+.statistics-col {
+  position: absolute;
+  right: 1vw;
+  top: 1vw;
 }
 
 .counter {

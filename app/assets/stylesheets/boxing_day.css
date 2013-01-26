@@ -28,6 +28,7 @@ body {
     display: -webkit-box;
     overflow: hidden;
 }
+
 .transparent {
 	background-color: transparent !important; 
 }
