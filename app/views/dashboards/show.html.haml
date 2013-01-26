@@ -1,27 +1,16 @@
 #dashboard-frame.container
+
   .column
-    #challenge-leaderboard.widget.row
-      .widget-header
-        %h1.widget-title Challenge Leaderboard
-        %p.widget-subtitle
+    .widget.row.flex-2.transparent
+
+    #logo-container.widget.row.transparent
+      #logo
   .column.flex-3
     .row.widget
       #post-leaderboard
         .widget-header
           %h1.widget-title Carbon Emitter Post Leaderboard
           %p.widget-subtitle last #{Post::DEFAULT_DAY_RANGE} days, starting #{(Date.today - Post::DEFAULT_DAY_RANGE.days).strftime('%m/%d/%y')}
-  .column
-    #buzz-box.widget.row
-      .widget-header
-        %h1.widget-title Buzz Box
-
-    #blog-traffic-graph.widget.row
-      .widget-header
-        %h1.widget-title Blog Traffic Graph
-
-    #blog-post-bar-chart.widget.row
-      .widget-header
-        %h1.widget-title Blog Post Bar Chart
 
 :javascript
   $(function() {

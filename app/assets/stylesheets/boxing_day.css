@@ -28,6 +28,9 @@ body {
     display: -webkit-box;
     overflow: hidden;
 }
+.transparent {
+	background-color: transparent !important; 
+}
 
 .column {
 	-webkit-box-flex: 1;
