@@ -15,4 +15,5 @@
 //= require underscore
 //= require backbone
 //= require gravtastic
+//= require fittext
 //= require_tree .

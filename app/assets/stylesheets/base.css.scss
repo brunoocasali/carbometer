@@ -1,6 +1,6 @@
 html, body {
   background-color: #000000;
-  font: 100% 'Museo Sans', sans-serif;
+  font: 1em 'Museo Sans', sans-serif;
   height: 100%;
   margin: 0;
   width: 100%;
@@ -27,7 +27,7 @@ a:active {
 
 h1 {
   color: #F5F5F5;                      /* white smoke */
-  font-size: 250%;
+  font-size: 2em;
   text-transform:uppercase;
   margin-bottom: 0;
   padding: 0px 10px;
@@ -35,7 +35,7 @@ h1 {
 
 h2 {
   color: #678BBA;                     /* medium blue */
-  font-size: 165%;
+  font-size: 1.65em;
   margin-bottom: 0;
   padding-left: 10px;
 }
@@ -43,7 +43,7 @@ h2 {
 h3 {
   color: #DCDCDC;                      /* light gray */
   font-weight: bold;
-  font-size: 115%;
+  font-size: 1.15em;
   padding-left: 10px;
 }
 
@@ -60,28 +60,6 @@ button {
   padding: 5px 10px;
   text-transform: uppercase;
 }
-
-/* % based on 1270px 12-col grid, 10px gutter */
-
-
-.nine-col {
-}
-
-.five-col {                            /* post leaderboard */
-  margin: .30%;                        /* 5px/1270px = .393701 */
-  width: 40.944882%;                   /* 525px/1270px = 41.338583% - .393701% =  40.944882% */
-}
-
-.four-col {                            /* buzz box, blog traffic graph, blog post bar chart */
-  margin: .30%;                        /* 5px/1270px = .393701 */
-  width: 32.677165%;                   /* 420px/1270px = 33.070866% - .393701% = 32.677165% */
-}
-
-.three-col {                           /* challenge */
-  margin: .30%;                        /* 5px/1270px = .393701 */
-  width: 24.409449%;                   /* 315px/1270px = 24.80315% - .393701% = 24.409449% */
-}
-
 
 /* this styling is specific to parts/base.html */
 
@@ -200,4 +178,5 @@ button {
   display: block;
   margin: .25em;
 }
+
 

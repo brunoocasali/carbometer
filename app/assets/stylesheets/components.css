@@ -1,39 +1,16 @@
 #dashboard-frame {
-  background: black;
-  float: left;
-  overflow: hidden;
-  width: 100%;
-}
-
-#challenge-leaderboard {
-  float: left;
-  height: 1419px;
-}
-
-#post-leaderboard {
-  float: left;
-}
-
-#buzz-box {
-  float: left;
-  height: 700px;
-}
-
-#blog-traffic-graph {
-  float: left;
-  height: 344px;
-}
-
-#blog-post-bar-chart {
-  float: left;
-  height: 344px;
-}
-
-.widget-gradient {
   background: #999; /* for non-css3 browsers */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000c', endColorstr='#313C4B'); /* for IE */
   background: -webkit-linear-gradient(#000, #313C4B); /* for webkit browsers */
   background: -moz-linear-gradient(top,  #000,  #313C4B); /* for firefox 3.6+ */
+}
+
+#dashboard-frame .widget {
+  margin: 8px;
+}
+
+#post-leaderboard {
+  width: 100%;
 }
 
 .widget {
@@ -41,33 +18,33 @@
 }
 
 .widget-header {
+  width: 100%;
   height: 50px;
-  border-bottom: 1px dotted white;
+  background-color: #FF4500;
+  line-height: 63px;
 }
 
 .widget-title {                         /* white smoke */
   color: #F5F5F5;
   display: inline;
-  float: left;
-  font-size: 150%;
+  font-size: 1.5em;
   padding-left: 10px;
   text-transform: capitalize;
 }
 
 .widget-subtitle {
-  color: #AFCBE0;                      /* light gray */
+  color: white;                      /* light gray */
   display: inline;
-  float: right;
-  font-size: 100%;
+  font-size: 1em;
   padding: 5px 10px 0 10px;
   width: auto;
 }
 
 .post-row {
+  position: relative;
   background: #313C4B;
   border-bottom: 1px solid black;
-  height: 160px;
-  padding: 5px 0;
+  height: 10vw;
 }
 
 .post-row-gradient {
@@ -81,55 +58,38 @@
 }
 
 .avatar-col {
-  display: inline;
-  float: left;
-  margin-top: 5px;
-  width: 12%;
+  position: absolute;
+  width: 10vw;
+  height: 10vw; /* 1:1 aspect ratio proportional to viewport width */
 }
 
-.post-info {
-  color: #FF4500;
-  display: inline;
-  float: left;
-  margin: 0;
-  padding: 0 0 0 3px;
-  width: 19px;
- }
-
 .avatar {
-  margin: 0;
-  padding: 0;
-  display: inline;
-  height: 73px;
-  width: 73px;
-  float: left;
-  box-shadow: 2px 2px 8px #000;
-  -moz-box0shadow: 2px 2px 8px #000;
-  -webkit-box-shadow: 2px 2px 8px #000;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-size: cover;
 }
 
 .title-info-col {
-  display: inline;
-  float: left;
+  position: relative;
+  left: 10vw;
   margin: 0 10px;
-  width: 70%;
+  padding-top: 1vw;
+  padding-left: 1vw;
 }
 
 .post-title {
   color: #678BBA;
-  float: left;
-  font-size: 175%;
+  font-size: 1.75em;
   font-style: bold;
-  line-height: 120%;
+  line-height: 1.2em;
   margin: 5px 0 0 0;
   padding: 0;
 }
 
 .post-author-date {
   color: #AFCBE0;
-  display: inline;
-  float: left;
-  font-size: 100%;
+  font-size: 1em;
   margin: 0;
   padding-left: 0;
 }
@@ -139,21 +99,24 @@
 }
 
 .statistics {
-  display: inline;
-  float: right;
   margin: 0 10px;
-  width: 12%;
+}
+
+.statistics-col {
+  position: absolute;
+  right: 1vw;
+  top: 1vw;
 }
 
 .counter {
-  font-size: 125%;
+  font-size: 1.25em;
   list-style: none;
   margin: 5px 5px;
 }
 
 li {
     color: #DCDCDC;
-    font-size: 115%;
+    font-size: 1.15em;
     padding: 0 20px 0 0px;
     text-align: right;
     background-repeat: no-repeat;
@@ -184,9 +147,38 @@ li {
 
 .traffic-graph p {     /* just used for the comp, not part of app styling */
   color: #808080;
-  font-size: .75em;
+  font-size: 0.75em;
   margin: 0 0 0 10px;
   text-transform: uppercase;
 }
 
+#logo-container {
+  position: relative;
+  margin: 20px !important;
+}
 
+#logo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('/assets/c5_final_logo_only.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  -webkit-animation-iteration-count: infinite; 
+  -webkit-animation-name: rotate_logo;  
+  -webkit-animation-duration: 10s; 
+  -webkit-perspective-origin: 50% 50%;
+  -webkit-animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes rotate_logo {
+  0% { -webkit-transform: rotateY(0deg); }
+  100% { -webkit-transform: rotateY(360deg); }
+  /*
+  Alternate:;
+  0% { -webkit-transform: rotateY(-70deg); }
+  85%   { -webkit-transform: rotateY(70deg); }
+  100% { -webkit-transform: rotateY(290deg); }
+  */
+}

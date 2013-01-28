@@ -1,27 +1,16 @@
-#dashboard-frame
+#dashboard-frame.container
 
-  #challenge-leaderboard.widget.three-col
-    .widget-header
-      %h1.widget-title Challenge Leaderboard
-      %p.widget-subtitle
+  .column
+    .widget.row.flex-2.transparent
 
-  #blog-visibility.nine-col
-    #post-leaderboard.widget.five-col
-      .widget-header
-        %h1.widget-title Carbon Emitter Post Leaderboard
-        %p.widget-subtitle last #{Post::DEFAULT_DAY_RANGE} days, starting #{(Date.today - Post::DEFAULT_DAY_RANGE.days).strftime('%m/%d/%y')}
-
-    #buzz-box.widget.four-col
-      .widget-header
-        %h1.widget-title Buzz Box
-
-    #blog-traffic-graph.widget.four-col
-      .widget-header
-        %h1.widget-title Blog Traffic Graph
-
-    #blog-post-bar-chart.widget.four-col
-      .widget-header
-        %h1.widget-title Blog Post Bar Chart
+    #logo-container.widget.row.transparent
+      #logo
+  .column.flex-3
+    .row.widget
+      #post-leaderboard
+        .widget-header
+          %h1.widget-title Carbon Emitter Post Leaderboard
+          %p.widget-subtitle last #{Post::DEFAULT_DAY_RANGE} days, starting #{(Date.today - Post::DEFAULT_DAY_RANGE.days).strftime('%m/%d/%y')}
 
 :javascript
   $(function() {
@@ -29,4 +18,8 @@
     setInterval(function() {
       Carbometer.Posts.fetch()
     }, 60000)
+
+    // TODO: Move this into JS file (scales text across window sizes)
+    $('h2, .post-author-date').fitText(3.5);
+    //$('.counter').fitText(1);
   });

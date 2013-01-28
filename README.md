@@ -4,6 +4,12 @@
 1. Create a Google Service Account for your Project (see [Google API Console](https://developers.google.com/analytics/devguides/reporting/core/v3/#best_registration))
 2. Assign Service User Access from Google Analytics (see [Enabling Analytics Access](http://stackoverflow.com/questions/9863509/service-applications-and-google-analytics-api-v3-server-to-server-oauth2-authen))
 
+Ensure that a postgres server is running locally, and that your credentials are correct in config/database.yml.
+
+    rake db:create
+    rake db:migrate
+    rails s
+
 ## Required Environment Variables
 1. `RAILS_SECRET_KEY`
     Rails secret key for signing cookies
@@ -35,3 +41,8 @@ your private key as an encoded PEM string. To set a multi-line environment varia
     heroku config:add GOOGLE_CLIENT_KEY="-----BEGIN RSA PRIVATE KEY-----
     ...
     -----END RSA PRIVATE KEY-----" --app $app_name
+
+
+## Display
+
+The wallboard is optimized for Chrome full screen on large monitor.
