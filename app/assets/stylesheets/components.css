@@ -156,6 +156,7 @@ li {
   position: relative;
   margin: 20px !important;
 }
+
 #logo {
   position: absolute;
   width: 100%;
@@ -164,4 +165,20 @@ li {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  -webkit-animation-iteration-count: infinite; 
+  -webkit-animation-name: rotate_logo;  
+  -webkit-animation-duration: 10s; 
+  -webkit-perspective-origin: 50% 50%;
+  -webkit-animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes rotate_logo {
+  0% { -webkit-transform: rotateY(0deg); }
+  100% { -webkit-transform: rotateY(360deg); }
+  /*
+  Alternate:;
+  0% { -webkit-transform: rotateY(-70deg); }
+  85%   { -webkit-transform: rotateY(70deg); }
+  100% { -webkit-transform: rotateY(290deg); }
+  */
 }
