@@ -183,6 +183,8 @@ describe PostService do
           title: @title,
           path: @path
         @author.save
+        PostService.should_receive(:import_author).with(@author.name)
+                                                  .and_return(@author)
         @imported_post = PostService.import_posts.first
       end
 
@@ -221,6 +223,32 @@ describe PostService do
           expect(post.published_at).to eq(@published_at)
         end
       end
+    end
+  end
+
+  describe '.import_author' do
+    before do
+      @name = 'John Doe'
+      @email = 'john@carbonfive.com'
+      @author = PostService.import_author @name
+    end
+
+    it 'creates a user' do
+      expect(@author).to be_kind_of(User)
+      expect(@author).to be_persisted
+    end
+
+    it 'determines the email address of the author' do
+      expect(@author.email).to eq(@email)
+    end
+
+    it 'assigns the name of the author' do
+      expect(@author.name).to eq(@name)
+    end
+
+    it 'does NOT recreate the author' do
+      author = PostService.import_author @name
+      expect(@author).to eq(author)
     end
   end
 end

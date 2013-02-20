@@ -231,7 +231,7 @@ DEPENDENCIES
   database_cleaner
   factory_girl_rails
   feedzirra
-  google-api-client
+  google-api-client (~> 0.4.5)
   gravtastic
   haml
   heroku
