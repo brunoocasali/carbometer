@@ -57,12 +57,12 @@ describe PostService do
         @imported_posts = Post.where(path: @post_path)
       end
 
-      it 'creates the post' do
-        expect(@imported_posts).to have(1).post
+      it 'does not create the post' do
+        expect(@imported_posts).to have(0).post
       end
 
-      it 'creates a statistic for the post' do
-        expect(@imported_posts.first.statistics).to have(1).statistic
+      it 'does not create a statistic' do
+        expect(Statistic.all).to have(0).statistic
       end
     end
 

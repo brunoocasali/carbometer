@@ -42,16 +42,14 @@ class PostService
 
     post = Post.find_by_title_and_path title, path
     if post
-      post.statistics.create stat_attrs
-    end
-
-    existing_statistics = post.statistics.where(source: source,
-                                                start_date: start_date,
-                                                end_date: end_date)
-    if existing_statistics.any?
-      existing_statistics.update_all stat_attrs
-    else
-      post.statistics.create stat_attrs
+      existing_statistics = post.statistics.where(source: source,
+                                                  start_date: start_date,
+                                                  end_date: end_date)
+      if existing_statistics.any?
+        existing_statistics.update_all stat_attrs
+      else
+        post.statistics.create stat_attrs
+      end
     end
   end
 
