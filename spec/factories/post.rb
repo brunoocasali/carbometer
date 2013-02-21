@@ -4,6 +4,8 @@ FactoryGirl.define do
     path  '/a/b/c/'
     published_at {Time.now}
     association :author, factory: :user
+    wordpress_id  54321
+    comment_count  0
 
     trait :statistics do
       statistics {

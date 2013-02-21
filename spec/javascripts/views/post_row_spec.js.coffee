@@ -12,7 +12,8 @@ describe 'Carbometer.View.PostRow', ->
       author_name: 'Mr Mister',
       published_at: '10/14/12',
       path: 'hey-now-the-path',
-      visit_sum: '1000'
+      visit_sum: '1000',
+      comment_count: '15'
 
     @postUrl = 'http://blog.carbonfive.com'+@post.get('path')
 
@@ -39,6 +40,10 @@ describe 'Carbometer.View.PostRow', ->
     it 'renders the post author', ->
       expect(@viewContent).toContain(@post.get('author_name'))
 
+    it 'renders the post comment count', ->
+      expect(@viewContent).toContain(@post.get('comment_count'))
+
+    it 'renders the author avatar', ->
     it 'renders the author avatar', ->
       expect(@viewContent).toContain('http://fake.gravatar.com')
 

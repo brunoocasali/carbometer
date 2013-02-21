@@ -5,7 +5,8 @@ describe PostService do
     before do
       PostService.stub!(:sleep)
       stub_requests_for(:google)
-      @existing_post = FactoryGirl.create :post, :statistics
+      stub_requests_for(:wordpress)
+      @existing_post = FactoryGirl.create :post, :statistics, :wordpress_id => 12345
       PostService.reset_posts
       # This title was pulled from the json fixture for webmock
       @new_post = Post.find_by_title('Using Open Source Static Libraries in Xcode 4')
@@ -15,8 +16,8 @@ describe PostService do
       expect {Post.find(@existing_post.id)}.to raise_error(ActiveRecord::RecordNotFound)
     end
 
-    it 'creates new posts from analytics data' do
-      expect(@new_post).to_not be_nil
+    it 'ignores unknown posts from analytics data' do
+      expect(@new_post).to be_nil
     end
   end
 
@@ -24,7 +25,8 @@ describe PostService do
     before do
       PostService.stub!(:sleep)
       stub_requests_for(:google)
-      @existing_post = FactoryGirl.create :post
+      stub_requests_for(:wordpress)
+      @existing_post = FactoryGirl.create :post, :comment_count => 5, :wordpress_id => 12345
       @existing_statistic = FactoryGirl.create :statistic, :post => @existing_post, :start_date => Date.today - 5.days, :end_date => Date.today - 5.days
 
       Provider::PostAnalytics.should_receive(:find_all_by_date_range).exactly(4).times.and_return([])
@@ -33,6 +35,10 @@ describe PostService do
 
     it 'does not delete existing posts' do
       Post.find_by_id(@existing_post.id).should_not be_nil
+    end
+
+    it 'updates comment counts' do
+      Post.find_by_id(@existing_post.id).comment_count.should == 12
     end
   end
 
@@ -51,12 +57,12 @@ describe PostService do
         @imported_posts = Post.where(path: @post_path)
       end
 
-      it 'creates the post' do
-        expect(@imported_posts).to have(1).post
+      it 'does not create the post' do
+        expect(@imported_posts).to have(0).post
       end
 
-      it 'creates a statistic for the post' do
-        expect(@imported_posts.first.statistics).to have(1).statistic
+      it 'does not create a statistic' do
+        expect(Statistic.all).to have(0).statistic
       end
     end
 
@@ -129,9 +135,13 @@ describe PostService do
 
   describe '.import_post_statistics' do
     before do
+      @title = 'title'
+      @path = 'path'
+      FactoryGirl.create :post, :title => @title, :path => @path
+
       source_one = Provider::PostAnalytics.new({
-        page_title: 'title',
-        page_path: 'path',
+        page_title: @title,
+        page_path: @path,
         visits: 1,
         source: 'one',
         start_date: Date.today,
@@ -145,7 +155,7 @@ describe PostService do
 
 
       @imported_statistics_count = PostService.import_post_statistics post_analytics
-      @imported_posts = Post.find_all_by_title 'title'
+      @imported_posts = Post.find_all_by_title @title
     end
 
     it 'associates multiple sources to single post' do
@@ -164,22 +174,25 @@ describe PostService do
       @author = FactoryGirl.build :user
       @path = '/1/2/3/'
       @published_at = Time.now
+      @comment_count = 3
+      @wordpress_id = 12345
 
-      feed_entry = double(
-        title: @title,
-        url: "http://blog.carbonfive.com#{@path}",
-        published: @published_at,
-        author: @author.name
-      )
-      feed = double(
-        entries: [feed_entry]
-      )
-      Provider::PostFeed.stub(:find_all).and_return(feed)
+      feed_entry = {
+        'title' => @title,
+        'URL' => "http://blog.carbonfive.com#{@path}",
+        'date' => @published_at,
+        'ID' => @wordpress_id,
+        'comment_count' => @comment_count,
+        'author' => { 'name' => @author.name }
+      }
+
+      Provider::PostFeed.stub(:find_all).and_return([feed_entry])
     end
 
     context 'given existing posts' do
       before do
         @existing_post = FactoryGirl.create :post,
+          wordpress_id: @wordpress_id,
           title: @title,
           path: @path
         @author.save
@@ -217,6 +230,8 @@ describe PostService do
           expect(post.title).to eq(@title)
           expect(post.path).to eq(@path)
           expect(post.published_at).to eq(@published_at)
+          expect(post.wordpress_id).to eq(@wordpress_id)
+          expect(post.comment_count).to eq(@comment_count)
         end
       end
     end

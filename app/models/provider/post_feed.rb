@@ -1,31 +1,40 @@
 class Provider::PostFeed
+  WORDPRESS_API = 'https://public-api.wordpress.com/rest/v1/sites/blog.carbonfive.com'
 
   def self.find_all
     current_page = 1
-    feed = nil
+    unless @feed
+      feed = nil
 
-    while response = page(current_page)
-      current_page += 1
+      while response = page(current_page)
+        current_page += 1
 
-      if feed
-        feed.entries << response.entries
-      else
-        feed = response
+        if feed
+          feed.concat response
+        else
+          feed = response
+        end
       end
-    end
 
-    feed.entries.flatten
+      @feed = feed.flatten
+    end
+    @feed
   end
 
   def self.page(page_number = 1)
-    feed_url = ENV['RSS_FEED_URL'] ||= 'http://blog.carbonfive.com/feed'
-    feed_url = "#{feed_url}/?paged=#{page_number}"
+    page_url = "#{WORDPRESS_API}/posts/"
+    page_url = "#{page_url}?type=post&page=#{page_number}"
+    response = HTTParty.get(page_url)
 
-    Feedzirra::Feed.fetch_and_parse feed_url
+    posts = JSON(response.body)['posts']
+    return nil if posts == []
+
+    posts
   end
 
-  class << self
-    alias_method :find_latest, :page
+  def self.post(wordpress_id)
+    post_url = "#{WORDPRESS_API}/posts/#{wordpress_id}"
+    response = HTTParty.get(post_url)
+    post = JSON(response.body)
   end
-
 end

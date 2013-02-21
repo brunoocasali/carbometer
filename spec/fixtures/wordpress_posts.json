@@ -1,0 +1,207 @@
+{
+	"found": 241,
+	"posts": [
+		{
+			"ID": 7358,
+			"author": {
+				"ID": 30,
+				"email": false,
+				"name": "Jared Carroll",
+				"URL": "",
+				"avatar_URL": "http:\/\/1.gravatar.com\/avatar\/987def7741e1f36805e45f92d66ccf92?s=96&d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D96&r=G",
+				"profile_URL": "http:\/\/en.gravatar.com\/987def7741e1f36805e45f92d66ccf92"
+			},
+			"date": "2013-01-22T04:18:51+00:00",
+			"modified": "2013-01-22T04:28:40+00:00",
+			"title": "Keeping Domain Models Cohesive with Collaborators",
+			"URL": "http:\/\/blog.carbonfive.com\/2013\/01\/21\/keeping-domain-models-cohesive-with-collaborators\/",
+			"short_URL": "http:\/\/wp.me\/p1CKEo-1UG",
+			"content": "<p>\nAs an application matures, classes begin to take on more and more responsibilities. Eventually a class&#8217;s main responsibility starts to become obscured. You can prevent overwhelming your classes by introducing collaborators to help them fulfill their responsibilities. In this post, we&#8217;ll look at an example of using a collaborator to prevent non-domain responsibilities from creeping into a domain model.\n<\/p>\n\n\n\n<h2>Bank Accounts and CSV Parsers<\/h2>\n\n<p>\nOur sample app is a banking web app. Currently it has a single domain model: <code>Account<\/code>. <code>Account<\/code> represents both checking and savings accounts. Each account has a name, an account type (checking or savings), and a balance.\n<\/p>\n\n<p>\nOur users want to be able to import accounts from a CSV file. Let&#8217;s start with a failing integration test.\n<\/p>\n\n<p>\n<em>spec\/requests\/importing_accounts_spec.rb<\/em>\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591747.js?file=0.rb\"><\/script>\n\n<p>\nAnd here&#8217;s the above CSV file of accounts.\n<\/p>\n\n<p>\n<em>spec\/fixtures\/accounts.csv<\/em>\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591747.js?file=1.csv\"><\/script>\n\n<p>\nRunning this gives us our first failing test.\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591747.js?file=2.txt\"><\/script>\n\n<p>\nFor simplicity, we&#8217;ll skip directly unit testing our view and controller, and instead move straight to the implementation.\n<\/p>\n\n<p>\nFirst, we define some routes.\n<\/p>\n\n<p>\n<em>config\/routes.rb<\/em>\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591747.js?file=3.rb\"><\/script>\n\n<p>\nThen, a homepage view with a file upload form.\n<\/p>\n\n<p>\n<em>app\/views\/accounts\/index.html.haml<\/em>\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591747.js?file=4.html.haml\"><\/script>\n\n<p>\nAnd finally, a simple controller to handle the file upload request.\n<\/p>\n\n<p>\n<em>app\/controllers\/accounts_controller.rb<\/em>\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591747.js?file=5.rb\"><\/script>\n\n<p>\nAfter this basic implementation, our test is still failing.\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591747.js?file=6.txt\"><\/script>\n\n<p>\nGreat. We can now move down to the domain model.\n<\/p>\n\n<h2>Isolating Non-Domain Responsibilities<\/h2>\n\n<p>\nBefore we jump into the <code>Account<\/code> unit test, let&#8217;s consider two possible CSV importing implementations:\n<\/p>\n\n<ul>\n  <li><code>Account<\/code> parses the CSV file and imports the accounts<\/li>\n  <li><code>Account<\/code> asks another object to parse the CSV file and import the accounts<\/li>\n<\/ul>\n\n<p>\nIn our domain, the <code>Account<\/code> model represents bank accounts. CSV parsing has nothing to do with banking. If we changed from CSV to plaintext, it would be strange to have to change <code>Account<\/code>. Also, if you were investigating a bug with CSV account importing, where would you look? The <code>Account<\/code> model is probably your first choice, but CSV importing is most likely going to be hard to find amongst <code>Account<\/code>&#8216;s other responsibilities. Having a separate object dedicated to CSV account importing makes it more obvious to other developers as to where this behavior exists. Let&#8217;s take this latter approach.\n<\/p>\n\n<p>\n<em>spec\/models\/account_spec.rb<\/em>\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591747.js?file=7.rb\"><\/script>\n\n<p>\nIn this test, we introduce and stub out an account importer object. An account importer will take a file and return the total number of accounts imported from the file.\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591747.js?file=8.txt\"><\/script>\n\n<p>\nLet&#8217;s get this test passing by having <code>Account<\/code> tell the account importer to import the file.\n<\/p>\n\n<p>\n<em>app\/models\/account.rb<\/em>\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591769.js?file=0.rb\"><\/script>\n\n<p>\nOur unit test is passing, but our integration test is still failing.\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591769.js?file=2.txt\"><\/script>\n\n<p>\nIt&#8217;s failing because we&#8217;re not passing an account importer to <code>Account::import<\/code>.\n<\/p>\n\n<p>\n<em>app\/controllers\/account_controller.rb<\/em>\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591769.js?file=3.rb\"><\/script>\n\n<p>\nLet&#8217;s go back down to the domain model and test drive this <code>CsvAccountImporter<\/code>.\n<\/p>\n\n<p>\n<em>spec\/models\/csv_account_importer_spec.rb<\/em>\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591769.js?file=5.rb\"><\/script>\n\n<p>\nAnd here&#8217;s a possible implementation in order to get this test passing.\n<\/p>\n\n<p>\n<em>app\/models\/csv_account_importer.rb<\/em>\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591769.js?file=6.rb\"><\/script>\n\n<p>\nOur integration test should now be passing.\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591769.js?file=7.txt\"><\/script>\n\n<h2>Hiding Implementation Details with Default Arguments<\/h2>\n\n<p>\nSince our tests are now green, it&#8217;s time to refactor. In our controller, we explicitly passed the <code>Account<\/code>&#8216;s collaborator, a <code>CsvAccountImporter<\/code>. But a controller shouldn&#8217;t know how <code>Account<\/code> imports CSV accounts. We can prevent this implementation detail from leaking out of our domain model by using Ruby&#8217;s default arguments.\n<\/p>\n\n<p>\nFirst, we&#8217;ll delete the CSV account importer from the controller.\n<\/p>\n\n<p>\n<em>app\/controllers\/accounts_controller.rb<\/em>\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591769.js?file=8.rb\"><\/script>\n\n<p>\nThen, we&#8217;ll set a new <code>CsvAccountImporter<\/code> object as the default account importer argument.\n<\/p>\n\n<p>\n<em>app\/models\/account.rb<\/em>\n<\/p>\n\n<script src=\"https:\/\/gist.github.com\/4591782.js?file=0.rb\"><\/script>\n\n<p>\nNow our controller knows less and <code>Account<\/code>&#8216;s collaborator is much more obvious.\n<\/p>\n\n<h2>Leaner Models<\/h2>\n\n<p>\nEvery codebase usually has that one massive class. It weighs in at over 1000 lines; its tests are twice as long and have no organization whatsoever. Since it contains so much behavior, it&#8217;s changed on almost every commit. Developers fear changing it because of merge conflicts caused from other developers also changing it. Collaborators are a simple way to break apart these unmaintainable classes. Don&#8217;t be afraid to add another class. Remember that your motivation is clarity, not flexibility.\n<\/p>\n",
+			"excerpt": "<p>As an application matures, classes begin to take on more and more responsibilities. Eventually a class&#8217;s main responsibility starts to become obscured. You can prevent overwhelming your classes by introducing collaborators to help them fulfill their responsibilities. In this post, &hellip; <a href=\"http:\/\/blog.carbonfive.com\/2013\/01\/21\/keeping-domain-models-cohesive-with-collaborators\/\">Continue reading <span class=\"meta-nav\">&rarr;<\/span><\/a><\/p>\n",
+			"slug": "keeping-domain-models-cohesive-with-collaborators",
+			"status": "publish",
+			"password": "",
+			"parent": false,
+			"type": "post",
+			"comments_open": true,
+			"pings_open": true,
+			"comment_count": 12,
+			"like_count": 0,
+			"featured_image": "",
+			"format": "standard",
+			"geo": false,
+			"publicize_URLs": [
+				
+			],
+			"tags": {
+				"collaborators": {
+					"name": "collaborators",
+					"slug": "collaborators",
+					"description": "",
+					"post_count": 1,
+					"meta": {
+						"links": {
+							"self": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/tags\/slug:collaborators",
+							"help": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/tags\/slug:collaborators\/help",
+							"site": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128"
+						}
+					}
+				},
+				"ood": {
+					"name": "ood",
+					"slug": "ood",
+					"description": "",
+					"post_count": 1,
+					"meta": {
+						"links": {
+							"self": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/tags\/slug:ood",
+							"help": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/tags\/slug:ood\/help",
+							"site": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128"
+						}
+					}
+				},
+				"responsibilities": {
+					"name": "responsibilities",
+					"slug": "responsibilities",
+					"description": "",
+					"post_count": 1,
+					"meta": {
+						"links": {
+							"self": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/tags\/slug:responsibilities",
+							"help": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/tags\/slug:responsibilities\/help",
+							"site": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128"
+						}
+					}
+				},
+				"ruby": {
+					"name": "ruby",
+					"slug": "ruby",
+					"description": "",
+					"post_count": 12,
+					"meta": {
+						"links": {
+							"self": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/tags\/slug:ruby",
+							"help": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/tags\/slug:ruby\/help",
+							"site": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128"
+						}
+					}
+				}
+			},
+			"categories": {
+				"Process": {
+					"name": "Process",
+					"slug": "process",
+					"description": "",
+					"post_count": 70,
+					"meta": {
+						"links": {
+							"self": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/categories\/slug:process",
+							"help": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/categories\/slug:process\/help",
+							"site": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128"
+						}
+					}
+				},
+				"Web": {
+					"name": "Web",
+					"slug": "web",
+					"description": "",
+					"post_count": 94,
+					"meta": {
+						"links": {
+							"self": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/categories\/slug:web",
+							"help": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/categories\/slug:web\/help",
+							"site": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128"
+						}
+					}
+				}
+			},
+			"attachments": {
+				
+			},
+			"meta": {
+				"links": {
+					"self": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/posts\/7358",
+					"help": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/posts\/7358\/help",
+					"site": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128",
+					"replies": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/posts\/7358\/replies\/",
+					"likes": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/posts\/7358\/likes\/"
+				}
+			}
+		},
+		{
+			"ID": 6988,
+			"author": {
+				"ID": 46,
+				"email": false,
+				"name": "Clark Cutler",
+				"URL": "",
+				"avatar_URL": "http:\/\/0.gravatar.com\/avatar\/857388962bc58432d0e22d5eb2ac3319?s=96&d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D96&r=G",
+				"profile_URL": "http:\/\/en.gravatar.com\/857388962bc58432d0e22d5eb2ac3319"
+			},
+			"date": "2013-01-17T19:21:29+00:00",
+			"modified": "2013-01-17T19:24:57+00:00",
+			"title": "PostgreSQL: Aggregates, Medians, and a Brief Command Reference",
+			"URL": "http:\/\/blog.carbonfive.com\/2013\/01\/17\/postgresql-aggregates-medians-and-a-brief-command-reference\/",
+			"short_URL": "http:\/\/wp.me\/p1CKEo-1OI",
+			"content": "<p>Recently, I have been working with analytics in <a href=\"http:\/\/www.postgresql.org\/docs\/9.2\/interactive\/index.html\" title=\"Official PostgreSQL 9.2.1 Documentation\" target=\"_blank\">PostgreSQL<\/a>. Often I hit the database through Ruby on Rails&#8217; ActiveRecord ORM. But with the tens of millions of rows I needed to crunch for analytics, I achieved significantly better performance and clearer code by writing raw SQL.<\/p>\n\n<p>Here&#8217;s a compilation of things I learned or used frequently.<\/p>\n\n\n\n<h2>Reference \/ tl;dr<\/h2>\n\n<h3>Basic Commands<\/h3>\n\n<p><style>\n.post-6988 td:first-child { width: 200px; }\n.post-6988 h3 { margin-top: 24px; }\n.post-6988 .official-documentation { margin-top: 18px; text-align: right; }\n<\/style><\/p>\n\n<table>\n<tr>\n  <td><code>\\?<\/code><\/td>\n  <td>list available commands<\/td>\n<\/tr>\n<tr>\n  <td><code>\\l<\/code><\/td>\n  <td>list databases<\/td>\n<\/tr>\n<tr>\n  <td><code>\\c <em>database<\/em><\/code><\/td>\n  <td>connect to a database<\/td>\n<\/tr>\n<tr>\n  <td><code>\\d<\/code><\/td>\n  <td>list tables in the current database<\/td>\n<\/tr>\n<tr>\n  <td><code>\\d <em>table<\/em><\/code><\/td>\n  <td>list columns in the provided table<\/td>\n<\/tr>\n<\/table>\n\n<h3>Handy Commands<\/h3>\n\n<table>\n<tr>\n  <td><code>\\x<\/code><\/td>\n  <td>toggle extended format, which gives each value more room: its own line instead of the typical tabular display<\/td>\n<\/tr>\n<tr>\n  <td><code>\\pset pager (off|on)<\/code><\/td>\n  <td>turn off paging, to print all results without the need for manual scrolling<\/td>\n<\/tr>\n<\/table>\n\n<h3>Math<\/h3>\n\n<table>\n<tr>\n  <td><code>floor(<em>num<\/em>)<\/code><\/td>\n  <td>round down to an integer<\/td>\n<\/tr>\n<tr>\n  <td><code>round(<em>num<\/em>)<\/code><\/td>\n  <td>round up or down to the nearest integer<\/td>\n<\/tr>\n<tr>\n  <td><code>round(<em>num<\/em>, <em>decimal_places<\/em>)<\/code><\/td>\n  <td>round to the specified number of decimal places<\/td>\n<\/tr>\n<\/table>\n\n<p class=\"official-documentation\"><a target=\"_blank\" href=\"http:\/\/www.postgresql.org\/docs\/9.2\/static\/functions-math.html##FUNCTIONS-MATH-FUNC-TABLE\">Official Documentation<\/a><\/p>\n\n<h3>Aggregates<\/h3>\n\n<table>\n<tr>\n  <td><code>count(<em>expression<\/em>)<\/code><\/td>\n  <td>the number of rows where expression is <em>not null<\/em><\/td>\n<\/tr>\n<tr>\n  <td><code>count(<em>expression<\/em> OR NULL)<\/td>\n  <td>the number of rows where expression is <em>true<em><\/td>\n<\/tr>\n<tr>\n  <td><code>bool_or(<em>expression<\/em>)<\/code><\/td>\n  <td>true if expression is true for any row, false otherwise<\/td>\n<\/tr>\n<\/table>\n\n<p class=\"official-documentation\"><a target=\"_blank\" href=\"http:\/\/www.postgresql.org\/docs\/9.2\/static\/functions-aggregate.html\">Official Documentation<\/a><\/p>\n\n<h3>(Approximate) Median<\/h3>\n\n<p>Note: This implementation does not provide the true median since, for simplicity, it  does not average the two middle values when the row count is even.\n<code><\/p>\n\n<pre>\nSELECT\n  MAX(column) as \"Median of Column\"\nFROM\n  (\n    SELECT\n      column,\n      ntile(2) OVER (ORDER BY column) AS bucket\n    FROM\n      table\n  ) as t\nWHERE bucket = 1\nGROUP BY bucket;\n<\/pre>\n\n<p><\/code><\/p>\n\n<p class=\"official-documentation\">\n  <a target=\"_blank\" href=\"http:\/\/www.postgresql.org\/docs\/9.2\/static\/tutorial-window.html\">Official Documentation about window functions<\/a><br \/>\n  <a target=\"_blank\" href=\"http:\/\/www.postgresql.org\/docs\/9.2\/static\/functions-window.html\">Official Documentation of built-in window functions<\/a>\n<\/p>\n\n<h2>Details<\/h2>\n\n<h3>Aggregates<\/h3>\n\n<h4>Aggregating Over A Table<\/h4>\n\n<p>An aggregate function yields a single value from a bunch of rows. For example, I can find out how many rows are in the <code>events<\/code> table:\n<code><\/p>\n\n<pre>\nSELECT COUNT(*) FROM events;\n  count \n---------\n 2732857 \n<\/pre>\n\n<p><\/code><\/p>\n\n<h4>Aggregating Over Groups<\/h4>\n\n<p>When used with a <code>GROUP BY<\/code>, aggregate functions apply to each group separately. For example, I can find out how many rows there are for each <code>type<\/code> of event in the <code>events<\/code> table:\n<code><\/p>\n\n<pre>\nSELECT type, COUNT(*) FROM events GROUP BY type;\n   type   | count\n----------+--------\n sign-up  | 683214\n visit    | 2049643\n<\/pre>\n\n<p><\/code><\/p>\n\n<h4>Counting Rows That Satisfy A Condition<\/h4>\n\n<p>The <code>COUNT(<em>expression<\/em>)<\/code> aggregate function counts only those rows for which expression is not null. With <code>COUNT(<em>boolean-expression<\/em> OR NULL)<\/code>, we can count only those rows for which a boolean expression is true, since <code><em>boolean-expression<\/em> OR NULL<\/code> evaluates to null when the boolean expression is false:<\/p>\n\n<p><code><\/p>\n\n<pre>\nSELECT\n  user_id,\n  COUNT(type = 'purchase-see-offer' OR NULL),\n  COUNT(type = 'purchase-begin' OR NULL),\n  COUNT(type = 'purchase-complete' OR NULL)\nFROM events\nGROUP BY user_id<\/pre>\n\n<p><\/code>\n<code><\/p>\n\n<pre>\n user_id | count | count |  count \n---------+-------+-------+--------\n 134294  |    14 |     0 |      0 \n 443291  |    12 |     2 |      1 \n<\/pre>\n\n<p><\/code><\/p>\n\n<h4>Determining Whether Any Row Satisfies A Condition<\/h4>\n\n<p>The <code>bool_or(<em>expression<\/em>)<\/code> aggregate returns true if expression is true for any row, false otherwise.<\/p>\n\n<p><code><\/p>\n\n<pre>\nSELECT\n  user_id,\n  BOOL_OR(type = 'purchase-see-offer'),\n  BOOL_OR(type = 'purchase-begin'),\n  BOOL_OR(type = 'purchase-complete')\nFROM events\nGROUP BY user_id<\/pre>\n\n<p><\/code>\n<code><\/p>\n\n<pre>\n user_id | count | count |  count \n---------+-------+-------+--------\n 134294  |     t |     f |      f \n 443291  |     t |     t |      t \n<\/pre>\n\n<p><\/code><\/p>\n\n<p class=\"official-documentation\"><a target=\"_blank\" href=\"http:\/\/www.postgresql.org\/docs\/9.2\/static\/functions-aggregate.html\">Official Documentation<\/a><\/p>\n\n<h3>Median and Window Functions<\/h3>\n\n<p>Suppose we want the median of <code><em>column<\/em><\/code>, and that we happen to have a table ordered by <code><em>column<\/em><\/code> with a <code>bucket<\/code> column that is 1 for rows in the first half of the table and 2 for rows in the second half.<\/p>\n\n<p><code><\/p>\n\n<pre>\nSELECT column, bucket FROM t ORDER BY column;\n column | bucket\n--------+--------\n      5 |      1\n     14 |      1\n     27 |      1\n     39 |      2\n    106 |      2\n<\/pre>\n\n<p><\/code><\/p>\n\n<p>From such a table we can get the median by grouping by bucket, and then selecting the maximum value of bucket 1:\n<code><\/p>\n\n<pre>\nSELECT max(column) FROM t WHERE bucket = 1 GROUP BY bucket;\n max\n-----\n  27\n<\/pre>\n\n<p><\/code><\/p>\n\n<p>Of course, we don't have tables with a magical bucket column. But Postgres' built-in <code>ntile(<em>number_of_buckets<\/em>)<\/code> window function will make it for us.<\/p>\n\n<h4>Window Functions<\/h4>\n\n<p>Like an aggregate function, a window function computes values by looking at a bunch of rows. It can look at the whole table, in fact, and will unless some kind of partitioning is specified. However, unlike an aggregate function, it produces a value for each row. It doesn't group.<\/p>\n\n<p>For example, Postgres provides a built-in window function to number rows:\n<code><\/p>\n\n<pre>\nSELECT column, row_number() OVER () FROM t;\n column | row_number \n--------+------------\n      5 |          1 \n    106 |          2 \n     14 |          3 \n     39 |          4 \n     27 |          5 \n<\/pre>\n\n<p><\/code><\/p>\n\n<p>And I can use any aggregate function as a window function by providing an over clause. For example, to include a column's maximum value in each row:\n<code><\/p>\n\n<pre>\nSELECT column, max(column) OVER () FROM t;\n column | max\n--------+-----\n      5 | 106 \n    106 | 106 \n     14 | 106 \n     39 | 106 \n     27 | 106 \n<\/pre>\n\n<p><\/code><\/p>\n\n<p>And finally, there's the window function we're interested in: <code>ntile<\/code>. It takes a number of buckets as arguments. And it numbers rows in a way that breaks them up as evenly as possible into the specified number of buckets:\n<code><\/p>\n\n<pre>\nSELECT column, ntile(2) OVER () FROM t;\n column | ntile\n--------+-------\n      5 |     1\n    106 |     1\n     14 |     1\n     39 |     2\n     27 |     2\n<\/pre>\n\n<p><\/code><\/p>\n\n<h5>Order By<\/h5>\n\n<p>The one missing piece for our median is making sure the rows are ordered by the column we're trying to find the median of. It's easy to overlook, and would ruin the median calculation highlighted above. The remedy: provide an <code>ORDER BY<\/code> within the <code>OVER<\/code> clause:\n<code><\/p>\n\n<pre>\nSELECT column, ntile(2) OVER (ORDER BY column) FROM t;\n column | ntile\n--------+-------\n      5 |     1\n     14 |     1\n     27 |     1\n     39 |     2\n    106 |     2\n<\/pre>\n\n<p><\/code><\/p>\n\n<h4>Putting It All Together<\/h4>\n\n<p><code><\/p>\n\n<pre>\nSELECT\n  max(column) AS median\nFROM\n  (\n    SELECT\n      column,\n      ntile(2) OVER (ORDER BY column) AS bucket\n    FROM\n      table\n  ) as t\nWHERE bucket = 1\nGROUP BY bucket;\n<\/pre>\n\n<p><\/code><\/p>\n\n<p class=\"official-documentation\">\n  <a target=\"_blank\" href=\"http:\/\/www.postgresql.org\/docs\/9.2\/static\/tutorial-window.html\">Official Documentation about window functions<\/a><br \/>\n  <a target=\"_blank\" href=\"http:\/\/www.postgresql.org\/docs\/9.2\/static\/functions-window.html\">Official Documentation of built-in window functions<\/a>\n<\/p>\n",
+			"excerpt": "<p>Recently, I have been working with analytics in PostgreSQL. Often I hit the database through Ruby on Rails&#8217; ActiveRecord ORM. But with the tens of millions of rows I needed to crunch for analytics, I achieved significantly better performance and &hellip; <a href=\"http:\/\/blog.carbonfive.com\/2013\/01\/17\/postgresql-aggregates-medians-and-a-brief-command-reference\/\">Continue reading <span class=\"meta-nav\">&rarr;<\/span><\/a><\/p>\n",
+			"slug": "postgresql-aggregates-medians-and-a-brief-command-reference",
+			"status": "publish",
+			"password": "",
+			"parent": false,
+			"type": "post",
+			"comments_open": true,
+			"pings_open": true,
+			"comment_count": 1,
+			"like_count": 0,
+			"featured_image": "",
+			"format": "standard",
+			"geo": false,
+			"publicize_URLs": [
+				
+			],
+			"tags": {
+				"postgresql": {
+					"name": "postgresql",
+					"slug": "postgresql",
+					"description": "",
+					"post_count": 1,
+					"meta": {
+						"links": {
+							"self": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/tags\/slug:postgresql",
+							"help": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/tags\/slug:postgresql\/help",
+							"site": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128"
+						}
+					}
+				}
+			},
+			"categories": {
+				"Database": {
+					"name": "Database",
+					"slug": "database-2",
+					"description": "",
+					"post_count": 1,
+					"meta": {
+						"links": {
+							"self": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/categories\/slug:database-2",
+							"help": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/categories\/slug:database-2\/help",
+							"site": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128"
+						}
+					}
+				}
+			},
+			"attachments": {
+				
+			},
+			"meta": {
+				"links": {
+					"self": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/posts\/6988",
+					"help": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/posts\/6988\/help",
+					"site": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128",
+					"replies": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/posts\/6988\/replies\/",
+					"likes": "https:\/\/public-api.wordpress.com\/rest\/v1\/sites\/24012128\/posts\/6988\/likes\/"
+				}
+			}
+		}
+	]
+}

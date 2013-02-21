@@ -42,6 +42,7 @@ describe PostsController do
             expect(post).to have_key('author_image')
             expect(post).to have_key('user_id')
             expect(post).to have_key('visit_sum')
+            expect(post).to have_key('comment_count')
           end
         end
       end
