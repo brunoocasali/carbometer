@@ -83,6 +83,7 @@ class PostService
       name: name,
       email: email
     })
+  end
 
   protected
 
