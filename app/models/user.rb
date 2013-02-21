@@ -6,5 +6,6 @@ class User < ActiveRecord::Base
 
   has_many        :posts
 
-  is_gravtastic
+  gravtastic secure: true,
+             size: 512
 end
