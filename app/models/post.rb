@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  DEFAULT_DAY_RANGE = 30
+  DEFAULT_DAY_RANGE = 5
 
   attr_accessible :title,
                   :path,

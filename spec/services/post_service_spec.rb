@@ -192,10 +192,6 @@ describe PostService do
         expect(Post.find_all_by_path(@path).length).to eq(1)
       end
 
-      it 'does NOT create a duplicate user' do
-        expect(User.find_all_by_name(@author.name).length).to eq(1)
-      end
-
       it 'associates an author with existing post' do
         expect(@imported_post.author.name).to eq(@author.name)
       end
