@@ -40,3 +40,10 @@ def stub_requests_for_wordpress
               body: fixture_for('wordpress_single_post.json'),
               headers: {'Content-Type' => 'application/json'})
 end
+
+def stub_requests_for_twitter
+  stub_request(:get, /^http:\/\/urls\.api\.twitter\.com\/1\/urls\/count\.json\?callback=&url=http\:\/\/blog\.carbonfive\.com\//).
+    to_return(status: 200,
+              body: fixture_for('twitter_tweet_count.json'),
+              headers: {'Content-Type' => 'application/json'})
+end

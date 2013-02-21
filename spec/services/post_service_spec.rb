@@ -6,6 +6,7 @@ describe PostService do
       PostService.stub!(:sleep)
       stub_requests_for(:google)
       stub_requests_for(:wordpress)
+      stub_requests_for(:twitter)
       @existing_post = FactoryGirl.create :post, :statistics, :wordpress_id => 12345
       PostService.reset_posts
       # This title was pulled from the json fixture for webmock
@@ -26,10 +27,12 @@ describe PostService do
       PostService.stub!(:sleep)
       stub_requests_for(:google)
       stub_requests_for(:wordpress)
-      @existing_post = FactoryGirl.create :post, :comment_count => 5, :wordpress_id => 12345
+      stub_requests_for(:twitter)
+      @existing_post = FactoryGirl.create :post, :comment_count => 5, :wordpress_id => 12345, :tweet_count => 5
       @existing_statistic = FactoryGirl.create :statistic, :post => @existing_post, :start_date => Date.today - 5.days, :end_date => Date.today - 5.days
 
       Provider::PostAnalytics.should_receive(:find_all_by_date_range).exactly(4).times.and_return([])
+      Provider::PostTweets.stub(:get_tweets_for_path).and_return(21)
       PostService.update_posts
     end
 
@@ -39,6 +42,10 @@ describe PostService do
 
     it 'updates comment counts' do
       Post.find_by_id(@existing_post.id).comment_count.should == 12
+    end
+
+    it 'updates tweet counts' do
+      Post.find_by_id(@existing_post.id).tweet_count.should == 21
     end
   end
 

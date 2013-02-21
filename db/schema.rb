@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220232543) do
+ActiveRecord::Schema.define(:version => 20130220234547) do
 
   create_table "posts", :force => true do |t|
     t.string   "title",                         :null => false
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20130220232543) do
     t.datetime "published_at"
     t.integer  "comment_count"
     t.integer  "wordpress_id"
+    t.integer  "tweet_count"
   end
 
   add_index "posts", ["path"], :name => "index_posts_on_path"

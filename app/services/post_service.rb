@@ -12,6 +12,8 @@ class PostService
 
     update_post_comment_counts
 
+    update_tweet_counts
+
     statistics_count = update_post_analytics
 
     statistics_count
@@ -108,5 +110,12 @@ class PostService
     end
 
     count
+  end
+
+  def self.update_tweet_counts
+    Post.all.each do |post|
+      tweet_count = Provider::PostTweets.get_tweets_for_path(post.path)
+      post.update_attribute(:tweet_count, tweet_count)
+    end
   end
 end
