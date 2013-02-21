@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe PostsController do
-
   describe '#index' do
     context 'given posts' do
       before do
@@ -40,6 +39,7 @@ describe PostsController do
             expect(post).to have_key('path')
             expect(post).to have_key('published_at')
             expect(post).to have_key('author_name')
+            expect(post).to have_key('author_image')
             expect(post).to have_key('user_id')
             expect(post).to have_key('visit_sum')
           end
