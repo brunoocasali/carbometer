@@ -3,6 +3,7 @@ FactoryGirl.define do
     title 'title'
     path  '/a/b/c/'
     published_at {Time.now}
+    association :author, factory: :user
 
     trait :statistics do
       statistics {

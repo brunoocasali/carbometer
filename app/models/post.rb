@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  DEFAULT_DAY_RANGE = 30
+  DEFAULT_DAY_RANGE = 5
 
   attr_accessible :title,
                   :path,
@@ -12,20 +12,11 @@ class Post < ActiveRecord::Base
   end
 
   def self.popular
-    Post.find(:all,
-              joins: :statistics,
-              select: 'posts.*, SUM(statistics.visit_count) as visit_sum',
-              group: 'posts.id, posts.title, posts.path, posts.user_id, posts.published_at',
-              limit: 8,
-              order: 'visit_sum desc')
-  end
-
-  def self.in_default_date_range
     Post.joins(:statistics)
         .joins('LEFT OUTER JOIN users ON users.id = posts.user_id')
         .where('statistics.start_date >= ?', Date.today - DEFAULT_DAY_RANGE.days)
-        .select('posts.*, SUM(statistics.visit_count) AS visit_sum, users.name AS author_name')
-        .group('posts.id, posts.title, posts.path, posts.user_id, posts.published_at, users.name')
+        .select('posts.*, SUM(statistics.visit_count) AS visit_sum, users.name AS author_name, users.email AS author_email')
+        .group('posts.id, posts.title, posts.path, posts.user_id, posts.published_at, users.name, users.email')
         .order('visit_sum DESC')
         .limit(8)
   end

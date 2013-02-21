@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 gem 'pg'
 gem 'jquery-rails'
 gem 'jbuilder'
 gem 'haml'
 gem 'sass'
-gem 'google-api-client'
+gem 'google-api-client', '~> 0.4.5'
 gem 'feedzirra'
 gem 'gravtastic'
 

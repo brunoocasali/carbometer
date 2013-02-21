@@ -1,5 +1,4 @@
 class PostService
-
   def self.reset_posts
     Post.destroy_all
     self.update_posts
@@ -62,9 +61,7 @@ class PostService
         path: URI(feed_entry.url).path
       )
       posts << post
-      author = User.find_or_create_by_name({
-        name: feed_entry.author
-      })
+      author = import_author feed_entry.author
       post.published_at = feed_entry.published
       post.author = author
       post.save
@@ -73,4 +70,12 @@ class PostService
     posts
   end
 
+  def self.import_author(name)
+    first_name = name.split(' ').first.downcase
+    email = "#{first_name}@carbonfive.com"
+    User.find_or_create_by_name({
+      name: name,
+      email: email
+    })
+  end
 end
