@@ -1,33 +1,8 @@
 require 'spec_helper'
 
 describe Post do
-  describe '::popular' do
-    before do
-      FactoryGirl.create_list :post, 10, :statistics
-      @popular_post = FactoryGirl.create :post, :popular
-
-      @popular_posts = Post.popular
-    end
-
-    it 'returns the most popular posts' do
-      expect(@popular_posts.first).to eql(@popular_post)
-    end
-
-    it 'returns at most 8 posts' do
-      expect(@popular_posts.length).to equal(8)
-    end
-
-    it 'sorts by popularity' do
-      @popular_posts.reduce(@popular_post.cumulative_visit_count) {|previous_visit_count, post|
-        less_popular = post.cumulative_visit_count <= previous_visit_count
-        expect(less_popular).to be(true)
-        post.cumulative_visit_count
-      }
-    end
-  end
-
-  describe '::in_default_date_range' do
-    context 'there are loans with views in the default range' do
+  describe '.popular' do
+    context 'given popular posts' do
       before do
         @recent_post = FactoryGirl.create :post, published_at: Date.today
         FactoryGirl.create :statistic, post: @recent_post, visit_count: 150, start_date: Date.today - 1.day
@@ -37,7 +12,7 @@ describe Post do
         @still_recent_post = FactoryGirl.create :post, published_at: Date.today - Post::DEFAULT_DAY_RANGE.days
         FactoryGirl.create :statistic, post: @still_recent_post, visit_count: 100
 
-        @default_posts = Post.in_default_date_range
+        @default_posts = Post.popular
       end
 
       it 'returns all posts sorted by visit counts' do
@@ -49,13 +24,13 @@ describe Post do
       end
     end
 
-    context 'there are more than 8 loans with views in the default range' do
+    context 'given more than 8 popular posts' do
       before do
         FactoryGirl.create_list :post, 10, :statistics
       end
 
-      it 'returns only 8 loans' do
-        expect(Post.in_default_date_range.length).to equal(8)
+      it 'returns only 8 posts' do
+        expect(Post.popular.length).to equal(8)
       end
     end
   end

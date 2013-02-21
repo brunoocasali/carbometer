@@ -1,6 +1,6 @@
 class DashboardsController < ApplicationController
   def show
-    default_posts = Post.in_default_date_range
+    default_posts = Post.popular
     @posts = Jbuilder.encode do |json|
       json.array!(default_posts) do |post|
         json.id post.id
