@@ -1,9 +1,11 @@
 FactoryGirl.define do
   factory :post do
     title 'title'
-    path  '/a/b/c/'
+    path  '/valid-post'
     published_at {Time.now}
     association :author, factory: :user
+    wordpress_id  54321
+    comment_count  0
 
     trait :statistics do
       statistics {

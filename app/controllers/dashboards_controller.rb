@@ -10,6 +10,7 @@ class DashboardsController < ApplicationController
         json.author_name post.author_name
         json.user_id post.user_id
         json.visit_sum post.visit_sum
+        json.comment_count post.comment_count
       end
     end
   end

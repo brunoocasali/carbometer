@@ -7,8 +7,8 @@ gem 'jbuilder'
 gem 'haml'
 gem 'sass'
 gem 'google-api-client', '~> 0.4.5'
-gem 'feedzirra'
 gem 'gravtastic'
+gem 'httparty'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

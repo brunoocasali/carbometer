@@ -13,6 +13,7 @@ class Carbometer.View.PostRow extends Backbone.View
       <div class='statistics-col'>
         <ul class='counter'>
           <li class='views'><%= post.visit_sum %></li>
+          <li class='comments'><%= post.comment_count %></li>
           <li class='tweets'>0</li>
         </ul>
       </div>

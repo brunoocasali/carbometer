@@ -13,6 +13,7 @@ describe 'Carbometer.View.PostLeaderboard', ->
           'published_at': '10/14/12',
           'path': '/hey-now-the-path',
           'visit_sum': '1000'
+          'comment_count': '10'
         }
 
     @postInfo2 =
@@ -22,6 +23,7 @@ describe 'Carbometer.View.PostLeaderboard', ->
         'published_at': '10/16/12',
         'path': '/hey-now-the-second-path',
         'visit_sum': '1500'
+        'comment_count': '12'
       }
 
     spyOn(@testPostCollection,'fetch').andCallFake (params) ->

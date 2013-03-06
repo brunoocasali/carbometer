@@ -11,29 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220230803) do
-
-  create_table "delayed_jobs", :force => true do |t|
-    t.integer  "priority",   :default => 0
-    t.integer  "attempts",   :default => 0
-    t.text     "handler"
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+ActiveRecord::Schema.define(:version => 20130220234547) do
 
   create_table "posts", :force => true do |t|
-    t.string   "title",                        :null => false
-    t.string   "path",         :limit => 1024, :null => false
+    t.string   "title",                         :null => false
+    t.string   "path",          :limit => 1024, :null => false
     t.integer  "user_id"
     t.datetime "published_at"
+    t.integer  "comment_count"
+    t.integer  "wordpress_id"
+    t.integer  "tweet_count"
   end
 
   add_index "posts", ["path"], :name => "index_posts_on_path"

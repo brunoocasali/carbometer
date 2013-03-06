@@ -21,24 +21,29 @@ def stub_requests_for_google
     to_return(status: 200,
               body: fixture_for('google_analytics.json'),
               headers: {'Content-Type' => 'application/json'})
+
 end
 
-def stub_requests_for_rss_feed
-  # Feedzirra uses Curb as its http client. Unfortunately Curb is not a client that Webmock supports
-  # so the following is some hackery to get it to play nice with external services.
-  Feedzirra::Feed.stub(:fetch_and_parse) do |url|
-    response = Net::HTTP.get_response(URI.parse(url))
-    if response.code == '200'
-      Feedzirra::Feed.parse response.body
-    else
-      nil
-    end
-  end
-
-  stub_request(:get, /blog.carbonfive.com/).
+def stub_requests_for_wordpress
+  stub_request(:get, 'https://public-api.wordpress.com/rest/v1/sites/blog.carbonfive.com/posts/?type=post&page=1').
     to_return(status: 200,
-             body: fixture_for('rss.xml'))
+              body: fixture_for('wordpress_posts.json'),
+              headers: {'Content-Type' => 'application/json'})
 
-  stub_request(:get, "http://blog.carbonfive.com/feed/?paged=3").
-    to_return(status: 404)
+  stub_request(:get, 'https://public-api.wordpress.com/rest/v1/sites/blog.carbonfive.com/posts/?type=post&page=2').
+    to_return(status: 200,
+              body: "{\"found\":0,\"posts\":[]}",
+              headers: {'Content-Type' => 'application/json'})
+
+  stub_request(:get, /^https:\/\/public\-api\.wordpress\.com\/rest\/v1\/sites\/blog\.carbonfive\.com\/posts\/[0-9]+/).
+    to_return(status: 200,
+              body: fixture_for('wordpress_single_post.json'),
+              headers: {'Content-Type' => 'application/json'})
+end
+
+def stub_requests_for_twitter
+  stub_request(:get, /^http:\/\/urls\.api\.twitter\.com\/1\/urls\/count\.json\?callback=&url=http\:\/\/blog\.carbonfive\.com\//).
+    to_return(status: 200,
+              body: fixture_for('twitter_tweet_count.json'),
+              headers: {'Content-Type' => 'application/json'})
 end
