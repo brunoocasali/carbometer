@@ -47,3 +47,27 @@ def stub_requests_for_twitter
               body: fixture_for('twitter_tweet_count.json'),
               headers: {'Content-Type' => 'application/json'})
 end
+
+def stub_requests_for_github
+  client_id, client_secret = 'foo', 'bar'
+  auth_params = "?client_id=#{client_id}&client_secret=#{client_secret}"
+
+  Carbometer::Application.config.stub(:github_client_id).and_return client_id
+  Carbometer::Application.config.stub(:github_client_secret).and_return client_secret
+
+  stub_request(:get, "https://api.github.com/users/linusstallman/repos#{auth_params}")
+    .to_return(
+      status: 200,
+      body: fixture_for('github/repos.json'),
+      headers: {'Content-Type' => 'application/json'}
+    )
+
+  %w(aasm active_merchant bootstrap).each do |repo|
+    stub_request(:get, "https://api.github.com/repos/linusstallman/#{repo}/commits#{auth_params}")
+      .to_return(
+        status: 200,
+        body: fixture_for("github/#{repo}_commits.json"),
+        headers: {'Content-Type' => 'application/json'}
+      )
+  end
+end

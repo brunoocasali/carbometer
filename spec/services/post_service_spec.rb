@@ -175,10 +175,21 @@ describe PostService do
     end
   end
 
+  describe '.initialize_github_usernames' do
+    before do
+      PostService.initialize_github_usernames
+    end
+
+    it 'caches Github usernames' do
+      expect(PostService.github_usernames).to be_kind_of(Hash)
+      expect(PostService.github_usernames).to_not be_empty
+    end
+  end
+
   describe '.import_posts' do
     before do
       @title = 'Title'
-      @author = FactoryGirl.build :user
+      @author = build :user
       @path = '/1/2/3/'
       @published_at = Time.now
       @comment_count = 3
@@ -198,13 +209,19 @@ describe PostService do
 
     context 'given existing posts' do
       before do
-        @existing_post = FactoryGirl.create :post,
+        @existing_post = create :post,
           wordpress_id: @wordpress_id,
           title: @title,
           path: @path
         @author.save
-        PostService.should_receive(:import_author).with(@author.name)
-                                                  .and_return(@author)
+
+        PostService
+          .should_receive(:import_author)
+          .with(@author.name)
+          .and_return(@author)
+
+        PostService.should_receive(:initialize_github_usernames)
+
         @imported_post = PostService.import_posts.first
       end
 
@@ -248,6 +265,10 @@ describe PostService do
     before do
       @name = 'John Doe'
       @email = 'john@carbonfive.com'
+      @github_username = 'jdoe'
+
+      PostService.github_usernames = { @name => @github_username }
+
       @author = PostService.import_author @name
     end
 
@@ -262,6 +283,10 @@ describe PostService do
 
     it 'assigns the name of the author' do
       expect(@author.name).to eq(@name)
+    end
+
+    it 'assigns the github username' do
+      expect(@author.github_username).to eq @github_username
     end
 
     it 'does NOT recreate the author' do

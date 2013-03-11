@@ -7,5 +7,8 @@ Carbometer::Application.routes.draw do
       get :popular
     end
   end
+
+  resources :contributions, only: :index
+
   root to: 'content#home'
 end
