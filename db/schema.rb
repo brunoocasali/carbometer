@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220234547) do
+ActiveRecord::Schema.define(:version => 20130306164904) do
 
   create_table "posts", :force => true do |t|
     t.string   "title",                         :null => false
@@ -39,8 +39,10 @@ ActiveRecord::Schema.define(:version => 20130220234547) do
   add_index "statistics", ["post_id"], :name => "index_statistics_on_post_id"
 
   create_table "users", :force => true do |t|
-    t.string "name"
-    t.string "email"
+    t.string  "name"
+    t.string  "email"
+    t.string  "github_username"
+    t.integer "commit_count"
   end
 
   add_index "users", ["name"], :name => "index_users_on_name"

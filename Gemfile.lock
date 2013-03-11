@@ -54,8 +54,16 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
+    columnize (0.3.6)
     crack (0.3.1)
     database_cleaner (0.9.1)
+    debugger (1.4.0)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.1.1)
+      debugger-ruby_core_source (~> 1.2.0)
+    debugger-linecache (1.1.2)
+      debugger-ruby_core_source (>= 1.1.1)
+    debugger-ruby_core_source (1.2.0)
     diff-lcs (1.1.3)
     erubis (2.7.0)
     excon (0.16.7)
@@ -221,6 +229,7 @@ DEPENDENCIES
   capybara-webkit
   coffee-rails (~> 3.2.1)
   database_cleaner
+  debugger
   factory_girl_rails
   google-api-client (~> 0.4.5)
   gravtastic
