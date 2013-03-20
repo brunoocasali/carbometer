@@ -1,0 +1,13 @@
+<h1 class="title" data-bind="title"></h1>
+<ul>
+  <li class='post' data-foreach-post='posts'>
+    <img data-bind-src='post.author_image'/>
+    <div class='post-details'>
+      <ul class='post-stats'>
+        <li class='visits' data-bind='post.visit_sum'/>
+      </ul>
+      <p class='post-title' data-bind='post.title'></p>
+      <p class='post-date'>Posted on <span data-bind='post.published_at'></span> by <span data-bind='post.author_name'></span></p>
+    </div>
+  </li>
+</ul>
