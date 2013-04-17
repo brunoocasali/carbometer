@@ -1,0 +1,10 @@
+<h1 class="title" data-bind="title"></h1>
+<ol>
+  <li class='user-contribution' data-foreach-oss='oss_contributions'>
+    <img class='avatar' data-bind-src='oss.avatar_url' />
+    <div class='contributor-data'>
+      <span class='username' data-bind='oss.login' />
+      <span class='commit-count' data-bind='oss.commit_count' />
+    </div>
+  </li>
+</ol>

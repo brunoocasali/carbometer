@@ -1,17 +1,24 @@
-require 'net/http'
+require 'typhoeus'
 require 'json'
+require 'cgi'
 
-search_term = URI::encode('#todayilearned')
 
 SCHEDULER.every '10m', :first_in => 0 do |job|
-  http = Net::HTTP.new('search.twitter.com')
-  response = http.request(Net::HTTP::Get.new("/search.json?q=#{search_term}"))
-  tweets = JSON.parse(response.body)["results"]
-  if tweets
-    tweets.map! do |tweet| 
-      { name: tweet['from_user'], body: tweet['text'], avatar: tweet['profile_image_url_https'] }
+  tweets = []
+  search_terms = ['carbonfive', 'Carbon Five']
+  search_terms.each do |term|
+    response = Typhoeus.get "search.twitter.com/search.json?q=%22#{URI::encode term}%22"
+    JSON(response.body)["results"].each do |result|
+      tweets << result
     end
-  
-    send_event('twitter_mentions', comments: tweets)
+  end
+  if tweets
+    tweets.uniq!
+    tweets.map! do |tweet|
+      tweet_body = CGI.unescapeHTML tweet['text']
+      { name: tweet['from_user'], body: tweet_body, avatar: tweet['profile_image_url_https'] }
+    end
+
+    send_event('carbonfive-tweets', tweets: tweets)
   end
 end

@@ -1,0 +1,57 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$background-color:  #9c8a41;
+$title-color:       rgba(255, 255, 255, 0.7);;
+$moreinfo-color:    rgba(255, 255, 255, 0.7);;
+
+// Widget-oss styles
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+.widget.widget-oss {
+  background: $background-color;
+  vertical-align: top;
+
+  .title {
+    color: $title-color;
+  }
+
+  ol {
+    list-style-type: none;
+
+    li {
+      position: relative;
+      height: 80px;
+      margin: 15px 0;
+
+      > * {
+        position: absolute;
+      }
+
+      img.avatar {
+        top: 0;
+        left: 0;
+        width: 80px;
+        height: 80px;
+      }
+
+      .contributor-data {
+        top: 0;
+        right: 0;
+
+        > * {
+          display: block;
+          text-align: right;
+        }
+
+        .username {
+          margin-bottom: .3em;
+        }
+
+        .commit-count {
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
+    }
+  }
+}
