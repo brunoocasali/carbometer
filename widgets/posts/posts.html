@@ -1,0 +1,13 @@
+<h1 class="title" data-bind="title"></h1>
+<ul>
+  <li class='post' data-foreach-post='posts'>
+    <p class='post-title' data-bind='post.title'></p>
+    <div class='post-details'>
+      <span class='author' data-bind='post.author_name'></span>
+      <div class="stats">
+        <span class='visits' data-bind='post.visit_sum'></span> /
+        <span class='comments' data-bind='post.comment_count'></span>
+      </div>
+    </div>
+  </li>
+</ul>
