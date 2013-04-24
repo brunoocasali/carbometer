@@ -35,6 +35,12 @@ $text-danger-color: #fff;
 // ----------------------------------------------------------------------------
 // Base styles
 // ----------------------------------------------------------------------------
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
