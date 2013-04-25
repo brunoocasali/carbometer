@@ -13,6 +13,7 @@ $text-gray: #454649;
   font-family: helvetica;
   font-size: 1.2rem;
   font-weight: bold;
+  padding-bottom: 0;
   text-align: left;
 
   h1 {
@@ -27,7 +28,7 @@ $text-gray: #454649;
   .post {
     border-bottom: 2px dotted $text-gray;
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     padding-bottom: 8px;
     overflow:hidden;
   }

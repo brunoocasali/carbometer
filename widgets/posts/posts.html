@@ -1,7 +1,7 @@
 <h1 class="title" data-bind="title"></h1>
 <ul>
   <li class='post' data-foreach-post='posts'>
-    <p class='post-title' data-bind='post.title'></p>
+    <p class='post-title'><a data-bind='post.title' data-bind-href='post.path' target='_blank'></a></p>
     <div class='post-details'>
       <span class='author' data-bind='post.author_name'></span>
       <div class="stats">
