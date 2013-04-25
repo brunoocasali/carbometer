@@ -1,0 +1,14 @@
+<h1 class="title" data-bind="title"></h1>
+<ul>
+  <li class='post' data-foreach-post='posts'>
+    <p class='post-title'><a data-bind='post.title' data-bind-href='post.path' target='_blank'></a></p>
+    <div class='post-details'>
+      <span class='author' data-bind='post.author_name'></span>
+      <div class="stats">
+        <span class='visits' data-bind='post.visit_sum'></span> /
+        <span class='comments' data-bind='post.comment_count'></span> /
+        <span class='tweets' data-bind='post.tweet_count'></span>
+      </div>
+    </div>
+  </li>
+</ul>

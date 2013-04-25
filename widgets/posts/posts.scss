@@ -1,0 +1,58 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$header-blue: #0099ec;
+$text-gray: #454649;
+
+// Widget-leaderboard styles
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+.widget.widget-posts {
+  background-color: white;
+  color: $text-gray;
+  font-family: helvetica;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-bottom: 0;
+  text-align: left;
+
+  h1 {
+    border-bottom: 2px solid $header-blue;
+    color: $header-blue;
+    font-weight: bold;
+    line-height: 1.0em;
+    padding-bottom: 10px;
+    text-align: left;
+  }
+
+  .post {
+    border-bottom: 2px dotted $text-gray;
+    display: block;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    overflow:hidden;
+  }
+
+  .post-title {
+    font-size: 1em;
+    line-height: 1.2em;
+  }
+
+  .post-details {
+    color: #ee4d13;
+    float: left;
+    font-size: .75em;
+    font-weight: normal;
+    margin-top: 15px;
+    width: 100%;
+
+    .author {
+      float: left;
+    }
+
+    .stats {
+      clear: none;
+      float: right;
+    }
+  }
+}
