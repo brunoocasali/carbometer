@@ -1,10 +1,14 @@
 /*
+  //=require_self
   //=require_directory .
   //=require_tree ../../widgets
 */
 // ----------------------------------------------------------------------------
 // Sass declarations
 // ----------------------------------------------------------------------------
+$flamingo-red: #F05A28;
+$abbey-gray: #58595b;
+$oslo-gray: #929497;
 $background-color: #222;
 $text-color: #fff;
 
@@ -259,3 +263,30 @@ h3 {
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
 
+//----
+// REDESIGN
+//----
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// Base styles
+// ----------------------------------------------------------------------------
+.post-details {
+  color: $flamingo-red;
+  float: left;
+  font-family: "brandon-grotesque",sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: normal;
+
+  .author {
+    float: left;
+  }
+
+  .stats {
+    clear: none;
+    float: right;
+  }
+}
