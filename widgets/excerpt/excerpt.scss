@@ -1,0 +1,55 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$flamingo-red: #F05A28;
+$abbey-gray: #58595b;
+$oslo-gray: #929497;
+$cerulean-blue: #00adee;
+
+// ----------------------------------------------------------------------------
+// Widget-text styles
+// ----------------------------------------------------------------------------
+.widget-excerpt {
+  background-color: #fff;
+  color: $oslo-gray;
+  padding-bottom: 15px;
+  padding-top: 80px;
+  text-align: left;
+
+  h1 {
+    color: $abbey-gray;
+    font-family: "brandon-grotesque",sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.875rem;
+    margin-bottom: 10px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    color: $cerulean-blue;
+    font-family: "brandon-grotesque",sans-serif;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+
+  .post-excerpt {
+    font-family: "adobe-caslon-pro",serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.375rem;
+    line-height: 1.40em;
+  }
+
+  .post-details {
+    font-size: 1.125rem;
+    margin-top: 50px;
+
+    .stats {
+      margin-left: 25px;
+    }
+  }
+}
