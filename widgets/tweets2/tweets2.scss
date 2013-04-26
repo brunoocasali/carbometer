@@ -1,0 +1,57 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$yellow-orange: #faaf40;
+$flamingo-red: #F05A28;
+
+// ----------------------------------------------------------------------------
+// Widget-tweet styles
+// ----------------------------------------------------------------------------
+.widget.widget-tweets2 {
+  background-color: $yellow-orange;
+  border: 10px solid white;
+  padding: 120px 60px 0;
+
+  img,
+  .tweet-container {
+    float: left;
+  }
+
+  .tweet-container {
+    clear: left;
+    line-height: 1.2em;
+    margin: 30px 0 0 63px;
+    text-align: left;
+
+    h3,
+    .date {
+      color: $flamingo-red;
+    }
+
+    .name {
+      font-family: "brandon-grotesque",sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .date {
+      font-family: "brandon-grotesque",sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: .8em;
+      margin: 10px 0;
+    }
+
+    .tweet {
+      font-family: "adobe-caslon-pro",serif;
+      font-size: 1.2rem;
+      font-style: normal;
+      font-weight: 400;
+
+      a {
+        color: $flamingo-red;
+      }
+    }
+  }
+}
