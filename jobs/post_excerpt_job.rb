@@ -9,6 +9,7 @@ SCHEDULER.every '12h', :first_in => 0 do |job|
 
   send_event('blog-excerpt', {
     post_title: post['title'],
+    post_path: post['path'],
     post_excerpt: post['excerpt'],
     post_author: post['author_name'],
     post_visits: post['visit_sum'],
