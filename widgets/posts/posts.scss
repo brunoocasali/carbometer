@@ -3,6 +3,7 @@
 // ----------------------------------------------------------------------------
 $header-blue: #0099ec;
 $text-gray: #454649;
+$cerulean-blue: #00adee;
 
 // Widget-leaderboard styles
 // ----------------------------------------------------------------------------
@@ -17,42 +18,43 @@ $text-gray: #454649;
   text-align: left;
 
   h1 {
-    border-bottom: 2px solid $header-blue;
-    color: $header-blue;
+    border-bottom: 1px solid $cerulean-blue;
+    color: $cerulean-blue;
+    font-family: "brandon-grotesque",sans-serif;
+    font-style: normal;
+    font-weight: 700;
     font-weight: bold;
     line-height: 1.0em;
     padding-bottom: 10px;
     text-align: left;
+    text-transform: uppercase;
   }
 
   .post {
-    border-bottom: 2px dotted $text-gray;
     display: block;
     margin-bottom: 20px;
-    padding-bottom: 8px;
     overflow:hidden;
+
+    hr {
+      background: transparent url(/assets/dotted-hr.png);
+      border: none;
+      float: left;
+      height: 1px;
+      margin-bottom: 0;
+      width: 100%;
+    }
   }
 
   .post-title {
+    font-family: "brandon-grotesque",sans-serif;
+    font-style: normal;
     font-size: 1em;
     line-height: 1.2em;
   }
 
   .post-details {
-    color: #ee4d13;
-    float: left;
     font-size: .75em;
-    font-weight: normal;
     margin-top: 15px;
     width: 100%;
-
-    .author {
-      float: left;
-    }
-
-    .stats {
-      clear: none;
-      float: right;
-    }
   }
 }
