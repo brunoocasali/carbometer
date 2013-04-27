@@ -1,0 +1,61 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$flamingo-red: #F05A28;
+$abbey-gray: #58595b;
+$oslo-gray: #929497;
+$cerulean-blue: #00adee;
+
+// ----------------------------------------------------------------------------
+// Widget-list styles
+// ----------------------------------------------------------------------------
+.widget-list2 {
+  background-color: #fff;
+  font-family: "brandon-grotesque",sans-serif;
+  font-size: 1.2rem;
+  font-style: normal;
+  padding-bottom: 15px;
+  vertical-align: top;
+
+  h1 {
+    border-bottom: 1px solid $cerulean-blue;
+    color: $cerulean-blue;
+    font-family: "brandon-grotesque",sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-weight: bold;
+    line-height: 1.0em;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  ol {
+    list-style: none;
+    text-align: left;
+  }
+
+  li {
+    color: $oslo-gray;
+    font-size: .8em;
+    margin-bottom: 5px;
+
+    hr {
+      background: transparent url(/assets/dotted-hr.png);
+      border: none;
+      float: left;
+      height: 1px;
+      margin: 5px 0;
+      width: 100%;
+    }
+  }
+
+  .label {
+    color: $flamingo-red;
+  }
+
+  .value {
+    float: right;
+  }
+}

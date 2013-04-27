@@ -9,4 +9,5 @@ SCHEDULER.every '60m', :first_in => 0 do |job|
   contributions = JSON response.body
 
   send_event('oss-update', oss_contributions: contributions)
+  send_event('oss-leaderboard', items: contributions)
 end
