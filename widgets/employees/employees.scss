@@ -1,0 +1,56 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$flamingo-red: #F05A28;
+$abbey-gray: #58595b;
+$oslo-gray: #929497;
+$cerulean-blue: #00adee;
+$pure-white: #ffffff;
+
+// ----------------------------------------------------------------------------
+// Widget-list styles
+// ----------------------------------------------------------------------------
+.widget-employees {
+  background-color: $cerulean-blue;
+  color: $pure-white;
+  font-family: "brandon-grotesque",sans-serif;
+  font-style: normal;
+  padding-bottom: 15px;
+  vertical-align: top;
+
+  h1 {
+    border-bottom: 1px solid $pure-white;
+    font-family: "brandon-grotesque",sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 1.0em;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  ol {
+    list-style: none;
+    text-align: left;
+
+    li {
+      margin-bottom: 20px;
+    }
+
+    span {
+      display: block;
+      line-height: 1em;
+      margin: 0;
+
+      &.user {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      &.project {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+<h1 class="title" data-bind="title | raw"></h1>
+
+<ol data-foreach-project="projects">
+  <li data-foreach-user="project.users">
+    <span class="user" data-bind="user.name"></span>
+    <span class="project" data-bind="project.name"></span>
+  </li>
+</ol>
