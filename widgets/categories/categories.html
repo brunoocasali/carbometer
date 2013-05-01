@@ -1,0 +1,13 @@
+<h1 class="title" data-bind="title | raw"></h1>
+
+<ol>
+  <li class='category' data-foreach-item="categories">
+    <span class="category-name" data-bind="item.name"></span>
+    <ul>
+      <li data-foreach-item='item.users'>
+        <span data-bind='item.name'></span>
+      </li>
+    </ul>
+    <hr>
+  </li>
+</ol>
