@@ -6,12 +6,23 @@ $abbey-gray: #58595b;
 $oslo-gray: #929497;
 $cerulean-blue: #00adee;
 $pure-white: #ffffff;
+$fun-blue: #1E6CB8;
 
 // ----------------------------------------------------------------------------
 // Widget-list styles
 // ----------------------------------------------------------------------------
 .widget-employees {
-  background-color: $cerulean-blue;
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent),
+                    linear-gradient(left , $fun-blue 0%, #000000 100%);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent),
+                    -o-linear-gradient(left , $fun-blue 0%, #000000 100%);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent),
+                    -moz-linear-gradient(left , $fun-blue 0%, #000000 100%);
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent),
+                    -webkit-linear-gradient(left , $fun-blue 0%, #000000 100%);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent),
+                    -ms-linear-gradient(left , $fun-blue 0%, #000000 100%);
+  background-size: 6px 6px, 100%;
   color: $pure-white;
   font-family: "brandon-grotesque",sans-serif;
   font-style: normal;
@@ -19,8 +30,10 @@ $pure-white: #ffffff;
   vertical-align: top;
 
   h1 {
+    background: transparent url(/assets/bench.png) 150px 5px no-repeat;
     border-bottom: 1px solid $pure-white;
     font-family: "brandon-grotesque",sans-serif;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
     line-height: 1.0em;
@@ -44,12 +57,13 @@ $pure-white: #ffffff;
       margin: 0;
 
       &.user {
-        font-size: 1.5rem;
+        color: $cerulean-blue;
+        font-size: 1rem;
         font-weight: 700;
       }
 
       &.project {
-        font-size: 1.2rem;
+        font-size: 0.875rem;
       }
     }
   }
