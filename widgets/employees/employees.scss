@@ -7,22 +7,13 @@ $oslo-gray: #929497;
 $cerulean-blue: #00adee;
 $pure-white: #ffffff;
 $fun-blue: #1E6CB8;
+$tarawera-blue: #083D51;
 
 // ----------------------------------------------------------------------------
 // Widget-list styles
 // ----------------------------------------------------------------------------
 .widget-employees {
-  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent),
-                    linear-gradient(left , $fun-blue 0%, #000000 100%);
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent),
-                    -o-linear-gradient(left , $fun-blue 0%, #000000 100%);
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent),
-                    -moz-linear-gradient(left , $fun-blue 0%, #000000 100%);
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent),
-                    -webkit-linear-gradient(left , $fun-blue 0%, #000000 100%);
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent),
-                    -ms-linear-gradient(left , $fun-blue 0%, #000000 100%);
-  background-size: 6px 6px, 100%;
+  background-color: $tarawera-blue;
   color: $pure-white;
   font-family: "brandon-grotesque",sans-serif;
   font-style: normal;
@@ -37,7 +28,7 @@ $fun-blue: #1E6CB8;
     font-style: normal;
     font-weight: 700;
     line-height: 1.0em;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     padding-bottom: 10px;
     text-align: left;
     text-transform: uppercase;
@@ -48,7 +39,7 @@ $fun-blue: #1E6CB8;
     text-align: left;
 
     li {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     span {
