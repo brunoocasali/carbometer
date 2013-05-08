@@ -1,13 +1,30 @@
 // ----------------------------------------------------------------------------
 // Sass declarations
 // ----------------------------------------------------------------------------
-$background-color:  #4b4b4b;
+$pure-white: #ffffff;
+$lemon-yellow: #FEF10A;
 
 // ----------------------------------------------------------------------------
 // Widget-image styles
 // ----------------------------------------------------------------------------
 .widget-image {
+  $widget-padding: 10px;
+  background-color: $pure-white;
+  font-family: "brandon-grotesque",sans-serif;
+  padding: $widget-padding;
 
-  background-color: $background-color;
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
 
+  p {
+    background-color: $lemon-yellow;
+    color: #000;
+    font-size: 1rem;
+    left: $widget-padding;
+    padding: 5px 10px;
+    position: absolute;
+    top: $widget-padding;
+  }
 }
