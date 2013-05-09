@@ -7,7 +7,7 @@ used as an API server for retrieving data used for the dashboards.
 
 ## Setup
 1. Clone and run
-   [Carbometrics](https://github.com/carbometer/carbometrics)
+   [Carbometrics](https://github.com/carbonfive,q/carbometrics)
 2. Clone and run Carbometer
 
 ## Required Environment Variables
