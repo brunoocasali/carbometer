@@ -3,14 +3,14 @@
 // ----------------------------------------------------------------------------
 $pure-white: #ffffff;
 $lemon-yellow: #FEF10A;
-
+$cerulean: #00ADEE;
 // ----------------------------------------------------------------------------
 // Widget-image styles
 // ----------------------------------------------------------------------------
 .widget-image {
   $widget-padding: 10px;
   background-color: $pure-white;
-  font-family: "brandon-grotesque",sans-serif;
+  font-family: adobe-caslon-pro, serif;
   padding: $widget-padding;
 
   img {
@@ -19,12 +19,21 @@ $lemon-yellow: #FEF10A;
   }
 
   p {
-    background-color: $lemon-yellow;
+    background: $lemon-yellow url(/assets/faux-drop.png) bottom left repeat-x;
     color: #000;
-    font-size: 1rem;
+    font-size: .9rem;
+    line-height: 1em;
     left: $widget-padding;
-    padding: 5px 10px;
+    padding: 5px 10px 0px 10px;
     position: absolute;
-    top: $widget-padding;
+    bottom: $widget-padding;
+    margin-left: 15px;
+    float: left;
+  }
+
+  .at {
+    margin: 3px 2px 0 0;
+    display: block;
+    float: left;
   }
 }

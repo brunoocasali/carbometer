@@ -1,0 +1,53 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$yellow-orange: #faaf40;
+$abbey: #58595B;
+$white: #ffffff;
+$cerulean: #00ADEE;
+
+// Widget-leaderboard styles
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+.widget.widget-counter {
+  text-align: left;
+  background-color: $white;
+  vertical-align: top;
+
+  h1 {
+    background: transparent url(/assets/counter.png) 150px 5px no-repeat;
+    font-family: "brandon-grotesque",sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1em;
+    text-align: left;
+    text-transform: uppercase;
+    color: $cerulean;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid $cerulean;
+  }
+
+  h2 {
+    font-family: "brandon-grotesque",sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: .8rem;
+    line-height: 1em;
+    text-align: left;
+    // text-transform: uppercase;
+    color: $cerulean;
+    margin-bottom: 20px;
+  }
+
+  li {
+    font-family: "brandon-grotesque",sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1.3em;
+    color: $abbey;
+  }
+}
+
