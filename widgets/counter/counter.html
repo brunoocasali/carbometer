@@ -1,14 +1,8 @@
 <h1 class="title" data-bind="title | raw"></h1>
-<h2>Week of May 15</h2>
+
+<h2 data-bind="updatedOnMessage"/>
 <ul>
-  <li>Rolled Oats</li>
-  <li>Granola</li>
-  <li>Nuts</li>
-  <li>Carob Chunks</li>
-  <li>Crackers</li>
-  <li>Dried Fruit</li>
-  <li>Chocolate</li>
-  <li>Cookies</li>
-  <li>Seaweed</li>
+  <li data-foreach-item="kitchen.foods">
+    <span class="category-name" data-bind="item.name"></span>
+  </li>
 </ul>
-    

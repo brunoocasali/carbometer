@@ -1,9 +1,10 @@
 <h1 class="title" data-bind="title | raw"></h1>
-<h2>Week of May 15</h2>
+
+<h2 data-bind="updatedOnMessage"/>
+
 <ul>
-  <li>Almond Butter</li>
-  <li>Hummus - Plain, Jalapeno</li>
-  <li>Greek Yogurt</li>
-  <li>Fresh Fruit</li>
+  <li data-foreach-item="kitchen.foods">
+    <span class="category-name" data-route="item" data-bind="item.name"></span>
+  </li>
 </ul>
     
