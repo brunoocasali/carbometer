@@ -10,7 +10,7 @@ console.log("Yeah! The dashboard has started!")
 window.Carbometer = {}
 
 Carbometer.minWidth = 960
-Carbometer.rowHeight = 225
+Carbometer.rowHeight = 140
 
 Carbometer.resizeWidgets = () ->
   if document.documentElement.clientWidth > Carbometer.minWidth
@@ -28,6 +28,7 @@ Dashing.on 'ready', ->
   Dashing.numColumns ||= 8
 
   Batman.setImmediate ->
+    console.log('batman set')
     Carbometer.gridster = $('.gridster ul:first').gridster
       num_cols: 8
       widget_margins: Dashing.widget_margins
