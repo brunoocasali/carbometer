@@ -28,7 +28,6 @@ Dashing.on 'ready', ->
   Dashing.numColumns ||= 8
 
   Batman.setImmediate ->
-    console.log('batman set')
     Carbometer.gridster = $('.gridster ul:first').gridster
       num_cols: 8
       widget_margins: Dashing.widget_margins
