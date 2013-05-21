@@ -1,0 +1,112 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$yellow-orange: #faaf40;
+$abbey: #58595B;
+$white: #ffffff;
+$cerulean: #00ADEE;
+
+// Widget-leaderboard styles
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+.widget.widget-hours {
+  text-align: left;
+  // background-color: #000000;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#00ADEE));
+  vertical-align: top;
+
+  h1 {
+    font-family: "brandon-grotesque",sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 4rem;
+    line-height: 1em;
+    text-align: left;
+    text-transform: uppercase;
+    color: $white;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+  }
+
+  h2 {
+    font-family: "brandon-grotesque",sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: .8rem;
+    line-height: 1em;
+    text-align: left;
+    // text-transform: uppercase;
+    color: $cerulean;
+    margin-bottom: 20px;
+  }
+
+  li {
+    font-family: "brandon-grotesque",sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1.3em;
+    color: $abbey;
+  }
+// ----------------------------------------------------------------------------
+// Possibly move into global styles if needed and replicated across more widgets
+// ----------------------------------------------------------------------------
+  .col1 {
+    background: transparent url(/assets/tear.png) 0px 140px no-repeat;
+    display: block;
+    float: left;
+
+    li {
+      font-family: "brandon-grotesque",sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 10em;
+      line-height: 1em;
+      text-align: left;
+      text-transform: uppercase;
+      color: $cerulean;
+      margin-top: 75px;
+    }
+
+    p {
+      font-family: "brandon-grotesque",sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1.3rem;
+      line-height: .5em;
+      text-align: left;
+      color: $white;
+      margin-top: -5px;
+    }
+  }
+
+  .col2 {
+    display: block;
+    float: left;
+    margin: 150px 0 0 150px;
+    padding-left: 20px;
+    border-left: 1px #ffffff solid;
+
+    li {
+      font-family: "brandon-grotesque",sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 1.3rem;
+      line-height: 1.4em;
+      text-align: left;
+      color: $white;
+    }
+
+    h2 {
+      font-family: "brandon-grotesque",sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 2rem;
+      line-height: 1em;
+      text-align: left;
+      text-transform: uppercase;
+      color: $white;
+    }
+  }
+}
+
