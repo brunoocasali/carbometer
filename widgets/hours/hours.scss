@@ -55,6 +55,7 @@ $cerulean: #00ADEE;
     background: transparent url(/assets/tear.png) 0px 140px no-repeat;
     display: block;
     float: left;
+    margin-left: 10px;
 
     li {
       font-family: "brandon-grotesque",sans-serif;
@@ -72,7 +73,7 @@ $cerulean: #00ADEE;
       font-family: "brandon-grotesque",sans-serif;
       font-style: normal;
       font-weight: 400;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       line-height: .5em;
       text-align: left;
       color: $white;
@@ -83,18 +84,42 @@ $cerulean: #00ADEE;
   .col2 {
     display: block;
     float: left;
-    margin: 150px 0 0 150px;
+    margin: 170px 0 0 130px;
     padding-left: 20px;
     border-left: 1px #ffffff solid;
+    min-height: 236px;
+
+    .offenders {
+      height: 100px;
+    }
+
+    ul {
+      float: left;
+      margin-right: 20px;
+      width: 202px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
 
     li {
       font-family: "brandon-grotesque",sans-serif;
       font-style: normal;
       font-weight: 400;
-      font-size: 1.3rem;
+      font-size: 1rem;
       line-height: 1.4em;
       text-align: left;
-      color: $white;
+      color: $cerulean;
+      border-bottom: 1px white dotted;
+      padding: 3px 0 3px 0;
+      overflow: hidden;
+
+      .shame-level {
+        font-size: .9rem;
+        color: $white;
+        float: right;
+      }
     }
 
     h2 {
