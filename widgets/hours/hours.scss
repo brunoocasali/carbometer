@@ -12,7 +12,7 @@ $cerulean: #00ADEE;
 .widget.widget-hours {
   text-align: left;
   // background-color: #000000;
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#000000), to(#00ADEE));
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(9,173,238,0)), to(rgba(9,173,238,.2)));
   vertical-align: top;
 
   h1 {
