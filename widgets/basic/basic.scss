@@ -6,7 +6,7 @@ $white: #ffffff;
 // Widget-leaderboard styles
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-.widget.widget-artifact {
+.widget.widget-basic {
   text-align: center;
   background: $white;
   vertical-align: top;
@@ -17,7 +17,7 @@ $white: #ffffff;
     height: 450px;
     margin: 10px;
     // This is the image that will be uploaded with the widget. 
-    background: transparent url(/assets/artifact_01.jpg) no-repeat;
+    background: transparent url(/assets/muchachos.jpg) no-repeat;
   }
 
   h1 {
@@ -31,20 +31,6 @@ $white: #ffffff;
     text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
     position: relative;
     top: 36%;
-  }
-
-  ul {
-    margin-top: 33%;
-  }
-
-  li {
-    font-family: "brandon-grotesque",sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 1.2rem;
-    line-height: 1.3em;
-    color: $white;
-    text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4);
   }
 
 }
