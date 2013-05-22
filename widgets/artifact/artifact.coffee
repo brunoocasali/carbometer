@@ -1,0 +1,1 @@
+class Dashing.Artifact extends Dashing.Widget
