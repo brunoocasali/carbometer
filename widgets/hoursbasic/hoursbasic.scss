@@ -50,7 +50,7 @@ $cerulean: #00ADEE;
 // Possibly move into global styles if needed and replicated across more widgets
 // ----------------------------------------------------------------------------
   .col1 {
-    background: transparent url(/assets/tear.png) 0px 105px no-repeat;
+    background: transparent url(/assets/tear.png) 0px 115px no-repeat;
     display: block;
     float: left;
     margin-left: 10px;
@@ -64,7 +64,7 @@ $cerulean: #00ADEE;
       text-align: left;
       text-transform: uppercase;
       color: $cerulean;
-      margin-top: 55px;
+      margin-top: 85px;
     }
 
     p {
@@ -75,7 +75,7 @@ $cerulean: #00ADEE;
       line-height: .5em;
       text-align: left;
       color: $white;
-      margin-top: -5px;
+      margin-top: 10px;
     }
   }
 }
