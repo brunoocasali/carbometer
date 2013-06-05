@@ -3,3 +3,7 @@ class Dashing.Fridge extends Dashing.Widget
     if updatedAt = @get('kitchen.updated_at')
       timestamp = new Date(updatedAt)
       "Updated on #{timestamp.toDateString()}"
+
+  onData: (data) ->
+    location_data = data[@location]
+    @set 'kitchen', location_data.kitchen if location_data
