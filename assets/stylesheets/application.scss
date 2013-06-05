@@ -277,7 +277,7 @@ h3 {
   color: $flamingo-red;
   float: left;
   font-family: "brandon-grotesque",sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-style: normal;
   font-weight: normal;
 
@@ -288,5 +288,23 @@ h3 {
   .stats {
     clear: none;
     float: right;
+
+    .visits {
+      margin: 0 0 0 10px;
+      padding-right: 22px;
+      background: url(/assets/eye.png) no-repeat right center;
+    }
+
+    .tweets {
+      margin: 0 0 0 10px;
+      padding-right: 18px;
+      background: url(/assets/tweety.png) no-repeat right center;
+    }
+
+    .comments {
+      margin: 0 0 0 10px;
+      padding-right: 18px;
+      background: url(/assets/pencil.png) no-repeat right center;
+    }
   }
 }
