@@ -8,4 +8,5 @@ SCHEDULER.every '1m', :first_in => 0 do |job|
   response_body = JSON response.body
 
   send_event('carbonfive-fridge', { kitchen: response_body[0] })
+  send_event('carbonfive-counter', { kitchen: response_body[0] })
 end
