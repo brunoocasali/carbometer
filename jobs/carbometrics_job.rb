@@ -4,6 +4,11 @@ require 'typhoeus'
 SCHEDULER.every '1m', :first_in => '10s' do |job|
   host = ENV['CARBOMETRICS_HOSTNAME']
   host = 'localhost:3000' unless host
+
+  handle_recent_posts host
+end
+
+def handle_recent_posts(host)
   response = Typhoeus.get "#{host}/posts/recent.json?limit=3", followlocation: true
   response_body = JSON response.body
   send_event('recent-posts', { posts: response_body })
