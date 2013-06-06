@@ -7,6 +7,7 @@ SCHEDULER.every '1m', :first_in => '10s' do |job|
 
   handle_recent_posts host
   handle_locations host
+  handle_instagrams host
 end
 
 def handle_recent_posts(host)
@@ -28,4 +29,13 @@ def handle_locations(host)
 
   send_event('carbonfive-fridge', locations_data)
   send_event('carbonfive-counter', locations_data)
+end
+
+def handle_instagrams(host)
+  response = Typhoeus.get "#{host}/instagrams.json", followlocation: true
+  images = JSON response.body
+
+  images.each_with_index do |image, index|
+    send_event("instagram-#{index+1}", { url: image['url'], username: image['username'] })
+  end
 end
