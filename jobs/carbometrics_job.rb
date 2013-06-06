@@ -9,6 +9,7 @@ SCHEDULER.every '1m', :first_in => '10s' do |job|
   handle_locations host
   handle_instagrams host
   handle_post_excerpts host
+  handle_projects host
 end
 
 def handle_recent_posts(host)
@@ -54,4 +55,11 @@ def handle_post_excerpts(host)
     post_comments: post['comment_count'],
     post_tweets: post['tweet_count']
   })
+end
+
+def handle_projects(host)
+  response = Typhoeus.get "#{host}/projects.json", followlocation: true
+  response_body = JSON response.body
+
+  send_event('carbonfive-projects', { categories: response_body })
 end
