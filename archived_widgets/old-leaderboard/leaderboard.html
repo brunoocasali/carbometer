@@ -1,6 +1,7 @@
 <h1 class="title" data-bind="title | raw"></h1>
 <ul>
   <li class='post' data-foreach-post='posts'>
+    <img data-bind-src='post.author_image'/>
     <div class='post-details'>
       <ul class='post-stats'>
         <li class='visits' data-bind='post.visit_sum'/>
