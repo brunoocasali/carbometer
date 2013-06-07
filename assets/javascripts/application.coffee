@@ -21,6 +21,25 @@ Carbometer.resizeWidgets = () ->
     baseHeight = baseWidth
     gridster.resize_widget_dimensions({widget_base_dimensions: [baseWidth, baseHeight]})
 
+Carbometer.dashboards = [ 'dashboard'
+                          'sampletv' ]
+
+Carbometer.nextDashboardIndex = ->
+  index = $.cookie().activeDashboardIndex
+  if index
+    index = parseInt index
+    index++
+
+  badIndex = !index || index >= Carbometer.dashboards.length
+  index = 0 if badIndex
+  $.cookie 'activeDashboardIndex', "#{index}"
+  index
+
+Carbometer.rotateDashboard = ->
+  index = Carbometer.nextDashboardIndex()
+  dashboard = Carbometer.dashboards[index]
+  window.location = "/#{dashboard}#{location.search}"
+
 Dashing.on 'ready', ->
   $('.gridster').find('li').not('[data-col]').remove() # Remove weird extra <li> that Dashing adds
   Dashing.widget_margins ||= [5, 5]
@@ -40,3 +59,5 @@ Dashing.on 'ready', ->
 
   $(window).resize =>
     Carbometer.resizeWidgets()
+
+  window.setInterval Carbometer.rotateDashboard, 10000
