@@ -27,4 +27,4 @@ Dashing.on 'ready', ->
   $(window).resize =>
     Carbometer.resizeWidgets()
 
-  window.setInterval Carbometer.rotateDashboard, 10000
+  Carbometer.onReady()

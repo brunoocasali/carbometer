@@ -2,6 +2,12 @@ window.Carbometer = {}
 
 Carbometer.minWidth = 960
 Carbometer.rowHeight = 140
+Carbometer.rotationLength = 10000
+Carbometer.dashboards = [ 'dashboard'
+                          'sampletv' ]
+
+Carbometer.onReady = ->
+  window.setInterval Carbometer.rotateDashboard, Carbometer.rotationLength
 
 Carbometer.resizeWidgets = () ->
   if document.documentElement.clientWidth > Carbometer.minWidth
@@ -11,9 +17,6 @@ Carbometer.resizeWidgets = () ->
     baseWidth = (windowWidth - (cols * 2) * Dashing.widget_margins[0]) / cols
     baseHeight = baseWidth
     gridster.resize_widget_dimensions({widget_base_dimensions: [baseWidth, baseHeight]})
-
-Carbometer.dashboards = [ 'dashboard'
-                          'sampletv' ]
 
 Carbometer.nextDashboardIndex = ->
   index = $.cookie().activeDashboardIndex
