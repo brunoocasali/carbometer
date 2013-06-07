@@ -3,8 +3,7 @@ window.Carbometer = {}
 Carbometer.minWidth = 960
 Carbometer.rowHeight = 140
 Carbometer.rotationLength = 10000
-Carbometer.dashboards = [ 'dashboard'
-                          'sampletv' ]
+Carbometer.dashboards = [ 'dashboard' ]
 
 Carbometer.onReady = ->
   params = Carbometer.params()
@@ -36,7 +35,9 @@ Carbometer.nextDashboardIndex = ->
 Carbometer.rotateDashboard = ->
   index = Carbometer.nextDashboardIndex()
   dashboard = Carbometer.dashboards[index]
-  window.location = "/#{dashboard}#{location.search}"
+  $('#container').css 'position', 'absolute'
+  $("#container").animate {left: "+=3000"}, 1000, ->
+    window.location = "/#{dashboard}#{location.search}"
 
 Carbometer.params = ->
   params = {}
