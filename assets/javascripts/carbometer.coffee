@@ -6,6 +6,8 @@ Carbometer.rotationLength = 10000
 Carbometer.dashboards = [ 'dashboard' ]
 
 Carbometer.onReady = ->
+  $('#container').fadeIn 2000
+
   params = Carbometer.params()
   Carbometer.rotationLength = parseInt(params.rotationLength) if params.rotationLength
 
