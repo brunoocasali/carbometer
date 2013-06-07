@@ -10,6 +10,7 @@ SCHEDULER.every '1m', :first_in => '10s' do |job|
   handle_instagrams host
   handle_post_excerpts host
   handle_projects host
+  handle_contributions host
 end
 
 def handle_recent_posts(host)
@@ -62,4 +63,11 @@ def handle_projects(host)
   response_body = JSON response.body
 
   send_event('carbonfive-projects', { categories: response_body })
+end
+
+def handle_contributions(host)
+  response = Typhoeus.get "#{host}/api/v1/contributions.json", followlocation: true
+  contributions = JSON response.body
+
+  send_event('oss-leaderboard', items: contributions)
 end
