@@ -10,6 +10,7 @@ $cerulean-blue: #00adee;
 // ----------------------------------------------------------------------------
 .widget.widget-posts {
   background-color: white;
+  // background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(105,55,15,0.2)), to(rgba(105,55,15,.5)));
   color: $text-gray;
   font-family: helvetica;
   font-size: 1.2rem;
@@ -29,6 +30,7 @@ $cerulean-blue: #00adee;
     padding-bottom: 10px;
     text-align: left;
     text-transform: uppercase;
+    margin-bottom: 2rem;
   }
 
   .post {

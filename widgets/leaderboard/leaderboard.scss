@@ -12,7 +12,7 @@ $cerulean-blue: #00adee;
 // ----------------------------------------------------------------------------
 .widget.widget-leaderboard {
   // background-color: #333;
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(9,173,238,0.05)), to(rgba(9,173,238,.2)));
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(9,173,238,0.07)), to(rgba(9,173,238,.2)));
   color: $text-gray;
   font-family: helvetica;
   font-size: 1.2rem;
@@ -32,6 +32,7 @@ $cerulean-blue: #00adee;
     padding-bottom: 10px;
     text-align: left;
     text-transform: uppercase;
+    margin-bottom: 2rem;
   }
 
   .post {

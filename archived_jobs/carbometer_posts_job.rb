@@ -4,8 +4,8 @@ require 'typhoeus'
 SCHEDULER.every '1m', :first_in => 0 do |job|
   host = ENV['CARBOMETRICS_HOSTNAME']
   host = 'localhost:3000' unless host
-  response = Typhoeus.get "#{host}/posts/recent.json?limit=6", followlocation: true
+  response = Typhoeus.get "#{host}/posts.json", followlocation: true
   response_body = JSON response.body
 
-  send_event('on-the-bench', { projects: response_body })
+  send_event('post-leaderboard', { posts: response_body })
 end
