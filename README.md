@@ -10,7 +10,7 @@ used as an API server for retrieving data used for the dashboards.
    [Carbometrics](https://github.com/carbonfive/carbometrics)
 2. Clone and run Carbometer
 
-## Required Environment Variables
+### Required Environment Variables
 1. `CARBOMETRICS_HOSTNAME`
     Host name for Carbometrics
 
