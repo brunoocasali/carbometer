@@ -1,12 +1,17 @@
 <h1 class='title' data-bind='title'></h1>
 <h3><a data-bind-href='post_path' data-bind='post_title' target='_blank'></a></h3>
-<div class='post-excerpt' data-bind='post_excerpt | raw'></div>
+
+
+
 <div class='post-details'>
   <span class='author' data-bind='post_author'></span>
   <div class="stats">
-    <span class='visits' data-bind='post_visits'></span> /
-    <span class='comments' data-bind='post_comments'></span> /
+    <span class='visits' data-bind='post_visits'></span>
     <span class='tweets' data-bind='post_tweets'></span>
+    <span class='comments' data-bind='post_comments'></span>
   </div>
 </div>
+
+
+<div class='post-excerpt' data-bind='post_excerpt | raw'></div>
 
