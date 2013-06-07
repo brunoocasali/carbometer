@@ -3,79 +3,78 @@
 // ----------------------------------------------------------------------------
 $title-color:       rgba(255, 255, 255, 0.7);;
 $moreinfo-color:    rgba(255, 255, 255, 0.7);;
+$header-blue: #0099ec;
+$text-gray: #454649;
+$cerulean-blue: #00adee;
 
 // Widget-leaderboard styles
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 .widget.widget-leaderboard {
+  // background-color: #333;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(9,173,238,0.07)), to(rgba(9,173,238,.2)));
+  color: $text-gray;
+  font-family: helvetica;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-bottom: 0;
   text-align: left;
-  background-color: rgb(156, 66, 116);
+  vertical-align: top;
 
   h1 {
-    color: rgba(255, 255, 255, 0.701961);
+    border-bottom: 1px solid $cerulean-blue;
+    color: $cerulean-blue;
+    font-family: "brandon-grotesque",sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-weight: bold;
+    line-height: 1.0em;
+    padding-bottom: 10px;
+    text-align: left;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
   }
 
   .post {
-    margin-bottom: 2px;
     display: block;
+    margin-bottom: 20px;
     overflow:hidden;
+
+    hr {
+      background: transparent url(/assets/dotted-hr.png);
+      border: none;
+      float: left;
+      height: 1px;
+      margin-bottom: 0;
+      width: 100%;
+    }
   }
 
-  img,
+  .post-title {
+      font-family: "brandon-grotesque",sans-serif;
+      font-style: normal;
+      font-size: 1em;
+      font-weight: normal;
+      line-height: 1.2em;
+      color: white;
+      letter-spacing: .1em;
+    }
+
   .post-details {
-    float: left;
+    font-size: 1em;
+    margin-top: 15px;
+    width: 100%;
+    color: $cerulean-blue;
   }
 
-  img {
-    width: 15%;
+  .visits {
+    background: url(/assets/eye_blue.png) no-repeat right center;
+  }
+  .tweets {
+    background: url(/assets/tweety_blue.png) no-repeat right center;
+  }
+  .comments {
+    background: url(/assets/pencil_blue.png) no-repeat right center;
   }
 
-  .post-details {
-    color: inherit;
-    font-family: "Museo Sans", sans-serif;
-    margin-left: 15px;
-    padding: 0 5px 15px 5px;
-    width: 75%;
-
-    .post-title {
-      color: #FFF;
-      font-size: 1.4rem;
-      font-weight: bold;
-    }
-
-    .post-date {
-      clear: left;
-      color: #fff;
-      font-size: 0.8rem;
-      color: rgba(0, 0, 0, 0.298039);
-
-      span {
-        font-weight: bold;
-      }
-    }
-
-    .post-stats {
-      float: right;
-
-      li {
-        background-position: center right;
-        background-repeat: no-repeat;
-        margin-bottom: 5px;
-        padding-right: 20px;
-        text-align: right;
-      }
-
-      .visits {
-        background-image: url(/assets/views-icon.png);
-      }
-
-      .comments {
-        background-image: url(/assets/comments-icon.png);
-      }
-
-      .tweets {
-        background-image: url(/assets/tweets-icon.png);
-      }
-    }
-  }
 }

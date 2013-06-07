@@ -1,15 +1,16 @@
-<h1 class="title" data-bind="title"></h1>
+<h1 class="title" data-bind="title | raw"></h1>
 <ul>
   <li class='post' data-foreach-post='posts'>
-    <img data-bind-src='post.author_image'/>
+    <p class='post-title' data-bind='post.title'></p>
     <div class='post-details'>
-      <ul class='post-stats'>
-        <li class='visits' data-bind='post.visit_sum'/>
-        <li class='comments' data-bind='post.comment_count'/>
-        <li class='tweets' data-bind='post.tweet_count'/>
-      </ul>
-      <p class='post-title' data-bind='post.title'></p>
-      <p class='post-date'>Posted on <span data-bind='post.published_at'></span> by <span data-bind='post.author_name'></span></p>
+      <span class='post-date'><span data-bind='post.author_name'></span></span>
+      <span class='post-date'><span data-bind='post.published_at'></span></span>
+      <div class="stats">
+        <span class='visits' data-bind='post.visit_sum'/></span>
+        <span class='tweets' data-bind='post.tweet_count'/></span>
+        <span class='comments' data-bind='post.comment_count'/></span>
+      </div>
     </div>
+    <hr>
   </li>
 </ul>

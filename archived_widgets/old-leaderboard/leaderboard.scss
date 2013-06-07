@@ -1,0 +1,83 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$title-color:       rgba(255, 255, 255, 0.7);;
+$moreinfo-color:    rgba(255, 255, 255, 0.7);;
+
+// Widget-leaderboard styles
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+
+
+.widget.widget-leaderboard {
+  text-align: left;
+  background-color: rgb(156, 66, 116);
+
+  h1 {
+    color: rgba(255, 255, 255, 0.701961);
+  }
+
+  .post {
+    margin-bottom: 2px;
+    display: block;
+    overflow:hidden;
+  }
+
+  img,
+  .post-details {
+    float: left;
+  }
+
+  img {
+    width: 15%;
+  }
+
+  .post-details {
+    color: inherit;
+    font-family: "Museo Sans", sans-serif;
+    margin-left: 15px;
+    padding: 0 5px 15px 5px;
+    width: 75%;
+
+    .post-title {
+      color: #FFF;
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .post-date {
+      clear: left;
+      color: #fff;
+      font-size: 0.8rem;
+      color: rgba(0, 0, 0, 0.298039);
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+    .post-stats {
+      float: right;
+
+      li {
+        background-position: center right;
+        background-repeat: no-repeat;
+        margin-bottom: 5px;
+        padding-right: 20px;
+        text-align: right;
+      }
+
+      .visits {
+        background-image: url(/assets/views-icon.png);
+      }
+
+      .comments {
+        background-image: url(/assets/comments-icon.png);
+      }
+
+      .tweets {
+        background-image: url(/assets/tweets-icon.png);
+      }
+    }
+  }
+}
