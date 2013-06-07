@@ -7,20 +7,6 @@
 
 console.log("Yeah! The dashboard has started!")
 
-window.Carbometer = {}
-
-Carbometer.minWidth = 960
-Carbometer.rowHeight = 140
-
-Carbometer.resizeWidgets = () ->
-  if document.documentElement.clientWidth > Carbometer.minWidth
-    gridster = Carbometer.gridster.data('gridster')
-    windowWidth = document.documentElement.clientWidth
-    cols = Dashing.numColumns
-    baseWidth = (windowWidth - (cols * 2) * Dashing.widget_margins[0]) / cols
-    baseHeight = baseWidth
-    gridster.resize_widget_dimensions({widget_base_dimensions: [baseWidth, baseHeight]})
-
 Dashing.on 'ready', ->
   $('.gridster').find('li').not('[data-col]').remove() # Remove weird extra <li> that Dashing adds
   Dashing.widget_margins ||= [5, 5]
@@ -40,3 +26,5 @@ Dashing.on 'ready', ->
 
   $(window).resize =>
     Carbometer.resizeWidgets()
+
+  Carbometer.onReady()
