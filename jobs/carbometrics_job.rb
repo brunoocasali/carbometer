@@ -68,6 +68,8 @@ end
 def handle_contributions(host)
   response = Typhoeus.get "#{host}/api/v1/contributions.json", followlocation: true
   contributions = JSON response.body
+  # Limit to a max of 10 contributors
+  contributions = contributions.slice(0, 10)
 
   send_event('oss-leaderboard', items: contributions)
 end
