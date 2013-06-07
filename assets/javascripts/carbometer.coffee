@@ -7,7 +7,11 @@ Carbometer.dashboards = [ 'dashboard'
                           'sampletv' ]
 
 Carbometer.onReady = ->
-  window.setInterval Carbometer.rotateDashboard, Carbometer.rotationLength
+  params = Carbometer.params()
+  Carbometer.rotationLength = parseInt(params.rotationLength) if params.rotationLength
+
+  if Carbometer.rotationLength > 0
+    window.setInterval Carbometer.rotateDashboard, Carbometer.rotationLength
 
 Carbometer.resizeWidgets = () ->
   if document.documentElement.clientWidth > Carbometer.minWidth
@@ -33,3 +37,12 @@ Carbometer.rotateDashboard = ->
   index = Carbometer.nextDashboardIndex()
   dashboard = Carbometer.dashboards[index]
   window.location = "/#{dashboard}#{location.search}"
+
+Carbometer.params = ->
+  params = {}
+  urlParams = location.search.split '&'
+  for param in urlParams
+    [paramName, paramValue] = param.split '='
+    paramName = paramName.substring(1) if paramName.charAt(0) == '?'
+    params[paramName] = paramValue
+  params
