@@ -23,9 +23,12 @@ Set each environment variable required (see [Required Environment Variables](#re
 ## Configuration
 
 ### Dashboard Rotation
-By default, Carbometer will rotate dashboards and a default interval. A URL parameter, `rotationLength`, can be
+By default, Carbometer will rotate dashboards at a default interval. A URL parameter, `rotationLength`, can be
 specified to override the rate of rotation. A value of `-1` will disable rotation, any other value will determine
 the rotation interval in milliseconds.
+
+The dashboards that are rotated can also be specified with the `dashboards` URL parameter. The value of `dashboards`
+must be a comma separated list of valid dashboards.
 
 ### Location
 Some widgets are location aware. By default `sf` is the location used to populate the widgets. To specify a different
