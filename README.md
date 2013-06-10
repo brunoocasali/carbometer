@@ -23,6 +23,8 @@ Set each environment variable required (see [Required Environment Variables](#re
 ## Configuration
 
 ### Dashboard Rotation
+Rotation of dashboards is provided by the rotation dashboard. The rotation dashboard is located at `/rotation`.
+
 By default, Carbometer will rotate dashboards at a default interval. A URL parameter, `rotationLength`, can be
 specified to override the rate of rotation. A value of `-1` will disable rotation, any other value will determine
 the rotation interval in milliseconds.
