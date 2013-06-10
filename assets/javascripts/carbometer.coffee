@@ -2,17 +2,8 @@ window.Carbometer = {}
 
 Carbometer.minWidth = 960
 Carbometer.rowHeight = 140
-Carbometer.rotationLength = 10000
-Carbometer.dashboards = [ 'dashboard' ]
 
 Carbometer.onReady = ->
-  $('#container').fadeIn 2000
-
-  params = Carbometer.params()
-  Carbometer.rotationLength = parseInt(params.rotationLength) if params.rotationLength
-
-  if Carbometer.rotationLength > 0
-    window.setInterval Carbometer.rotateDashboard, Carbometer.rotationLength
 
 Carbometer.resizeWidgets = () ->
   if document.documentElement.clientWidth > Carbometer.minWidth
@@ -22,24 +13,6 @@ Carbometer.resizeWidgets = () ->
     baseWidth = (windowWidth - (cols * 2) * Dashing.widget_margins[0]) / cols
     baseHeight = baseWidth
     gridster.resize_widget_dimensions({widget_base_dimensions: [baseWidth, baseHeight]})
-
-Carbometer.nextDashboardIndex = ->
-  index = $.cookie().activeDashboardIndex
-  if index
-    index = parseInt index
-    index++
-
-  badIndex = !index || index >= Carbometer.dashboards.length
-  index = 0 if badIndex
-  $.cookie 'activeDashboardIndex', "#{index}"
-  index
-
-Carbometer.rotateDashboard = ->
-  index = Carbometer.nextDashboardIndex()
-  dashboard = Carbometer.dashboards[index]
-  $('#container').css 'position', 'absolute'
-  $("#container").animate {left: "+=3000"}, 1000, ->
-    window.location = "/#{dashboard}#{location.search}"
 
 Carbometer.params = ->
   params = {}
