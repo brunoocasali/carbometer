@@ -5,9 +5,10 @@ class Dashing.Rotater extends Dashing.Widget
     @dashboards = [ 'dashboard' ]
     params = Carbometer.params()
     @rotationLength = parseInt(params.rotationLength) if params.rotationLength
+    @dashboards = params.dashboards.split(',') if params.dashboards
     @rotateDashboard()
 
-    if @rotationLength > 0
+    if @rotationLength > 0 || @dashboards.length > 1
       window.setInterval @rotateDashboard, @rotationLength
 
   rotateDashboard: =>
