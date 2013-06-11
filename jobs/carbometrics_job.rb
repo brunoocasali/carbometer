@@ -53,6 +53,9 @@ def handle_posts(host)
 
   recent_posts = summary['recent']
   send_event('recent-posts', { posts: recent_posts })
+
+  popular_posts = summary['popular']
+  send_event('post-leaderboard', { posts: popular_posts })
 end
 
 def handle_projects(host)
