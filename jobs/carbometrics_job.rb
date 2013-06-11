@@ -51,7 +51,7 @@ def handle_posts(host)
     post_tweets: post['tweet_count']
   })
 
-  send_event('last-post', post)
+  send_event('last-post', post: post)
 
   recent_posts = summary['recent']
   send_event('recent-posts', { posts: recent_posts })
