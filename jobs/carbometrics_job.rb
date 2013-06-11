@@ -5,18 +5,11 @@ SCHEDULER.every '1m', :first_in => '10s' do |job|
   host = ENV['CARBOMETRICS_HOSTNAME']
   host = 'localhost:3000' unless host
 
-  handle_recent_posts host
   handle_locations host
   handle_instagrams host
-  handle_post_excerpts host
+  handle_posts host
   handle_projects host
   handle_contributions host
-end
-
-def handle_recent_posts(host)
-  response = Typhoeus.get "#{host}/posts/recent.json?limit=3", followlocation: true
-  response_body = JSON response.body
-  send_event('recent-posts', { posts: response_body })
 end
 
 def handle_locations(host)
@@ -43,10 +36,11 @@ def handle_instagrams(host)
   end
 end
 
-def handle_post_excerpts(host)
-  response = Typhoeus.get "#{host}/posts/excerpt.json", followlocation: true
-  post = JSON response.body
+def handle_posts(host)
+  response = Typhoeus.get "#{host}/api/v1/posts/summary.json", followlocation: true
+  summary = JSON response.body
 
+  post = summary['last_post']
   send_event('blog-excerpt', {
     post_title: post['title'],
     post_path: post['path'],
@@ -56,6 +50,14 @@ def handle_post_excerpts(host)
     post_comments: post['comment_count'],
     post_tweets: post['tweet_count']
   })
+
+  send_event('last-post', post)
+
+  recent_posts = summary['recent']
+  send_event('recent-posts', { posts: recent_posts })
+
+  popular_posts = summary['popular']
+  send_event('post-leaderboard', { posts: popular_posts })
 end
 
 def handle_projects(host)
