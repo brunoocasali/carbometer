@@ -1,4 +1,24 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$white: #ffffff;
+
+// Widget-last-post styles
+// ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 .widget.widget-last-post {
+  text-align: center;
+  background: $white;
+  vertical-align: top;
+  padding: 0px;
+
+  .full-img {
+    width: 450px;
+    height: 450px;
+    margin: 10px;
+    // This is the image that will be uploaded with the widget. 
+    background: transparent url(/assets/ron.jpg) no-repeat;
+  }
 
   .happy {
     color: green;
