@@ -10,15 +10,18 @@ class Dashing.LastPost extends Dashing.Widget
     daysSinceLastPost = parseInt(difference / DAY_MILLIS)
     @set 'daysSinceLastPost', daysSinceLastPost
 
-    @happiness daysSinceLastPost <= 7
+    @determineHappiness daysSinceLastPost
 
-  happiness: (happiness) =>
+  determineHappiness: (daysSinceLastPost) =>
+    happiness = (daysSinceLastPost <= 7)
     node = $(@get 'node')
     counter = node.find '.counter'
+    counter.removeClass()
 
     if happiness
-      counter.removeClass 'sad'
       counter.addClass 'happy'
+      node.removeClass '-1', '-2', '-3', '-4', '-5', '-6', '-7', '-8'
+      node.addClass "-#{daysSinceLastPost}"
     else
-      counter.removeClass 'happy'
+      node.addClass '-8'
       counter.addClass 'sad'
