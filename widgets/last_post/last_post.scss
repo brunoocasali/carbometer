@@ -40,14 +40,42 @@ $white: #ffffff;
   }
 
   .happy,.sad {
-  	margin-top: 30%;
+  	margin-top: 25%;
   }
 
   .sad {
   	border: 1px solid green;
   }
 
+  &.b-1 .full-img {
+  	background: transparent url(/assets/steve.jpg) no-repeat;
+  }
+
+  &.b-2 .full-img {
+  	background: transparent url(/assets/peter.jpg) no-repeat;
+  }
+
+  &.b-3 .full-img {
+  	background: transparent url(/assets/jim.jpg) no-repeat;
+  }
+
+  &.b-4 .full-img {
+  	background: transparent url(/assets/margot.jpg) no-repeat;
+  }
+
+  &.b-5 .full-img {
+  	background: transparent url(/assets/don.jpg) no-repeat;
+  }
+
   &.b-6 .full-img {
+  	background: transparent url(/assets/winston.jpg) no-repeat;
+  }
+
+  &.b-7 .full-img {
+  	background: transparent url(/assets/officespace.jpg) no-repeat;
+  }
+
+  &.b-8 .full-img {
   	background: transparent url(/assets/ron.jpg) no-repeat;
   }
 }
