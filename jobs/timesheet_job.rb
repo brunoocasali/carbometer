@@ -4,7 +4,7 @@ SCHEDULER.every '1m', :first_in => '10s' do |job|
   api_token = ENV['TIMESHEET_API_TOKEN']
   timesheet_host = ENV['TIMESHEET_HOSTNAME']
   timesheet_host = 'localhost:3333' unless timesheet_host
-  timesheet_host.prepend 'https://' unless timesheet_host.match /^localhost/
+  timesheet_host = "https://#{timesheet_host}" unless timesheet_host.match /^localhost/
 
   if api_token.nil?
     response_body = { 'total_delinquent_hours' => '?' }
