@@ -14,6 +14,12 @@ used as an API server for retrieving data used for the dashboards.
 1. `CARBOMETRICS_HOSTNAME`
     Host name for Carbometrics
 
+2. `TIMESHEET_HOSTNAME`
+   Host name for Timesheet. By default, Timesheet communication is over ssl. Therefore do not include the protocol in the Hostname (i.e. https://).
+
+3. `TIMESHEET_API_TOKEN`
+   API token for Timesheet
+
 ## Deployment
 
 ### Heroku
