@@ -16,7 +16,7 @@ class Dashing.LastPost extends Dashing.Widget
     happiness = (daysSinceLastPost <= 7)
     node = $(@get 'node')
     counter = node.find '.counter'
-    counter.removeClass()
+    counter.removeClass('.happy,.sad')
 
     if happiness
       counter.addClass 'happy'

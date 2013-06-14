@@ -2,6 +2,7 @@
 // Sass declarations
 // ----------------------------------------------------------------------------
 $white: #ffffff;
+$grey: #464646;
 
 // Widget-last-post styles
 // ----------------------------------------------------------------------------
@@ -13,7 +14,7 @@ $white: #ffffff;
   vertical-align: top;
 
   .full-img {
-  	background: transparent url(/assets/obama.jpg) no-repeat;
+  	background: $grey;
   	height: 450px;
   }
   
@@ -40,12 +41,12 @@ $white: #ffffff;
   	font-weight: 300;
   }
 
-  .happy,.sad {
+  .counter {
   	margin-top: 25%;
   }
 
   .sad {
-  	border: 1px solid green;
+  	// border: 1px solid green;
   }
 
   &.b-1 .full-img {
