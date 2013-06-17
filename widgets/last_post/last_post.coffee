@@ -20,8 +20,8 @@ class Dashing.LastPost extends Dashing.Widget
 
     if happiness
       counter.addClass 'happy'
-      node.removeClass '-1', '-2', '-3', '-4', '-5', '-6', '-7', '-8'
+      node.removeClass 'b-1', 'b-2', 'b-3', 'b-4', 'b-5', 'b-6', 'b-7', 'b-8'
       node.addClass "b-#{daysSinceLastPost}"
     else
-      node.addClass '-8'
+      node.addClass 'b-8'
       counter.addClass 'sad'
