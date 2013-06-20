@@ -20,7 +20,7 @@ as the API server for retrieving data used for the dashboards.
       account and set it here.
 
   1. `TWITTER_CONSUMER_KEY`, `TWITTER_CONSUMER_SECRET`, `TWITTER_OAUTH_KEY`
-     and `TWITTER_OAUTH_SECRET.
+     and `TWITTER_OAUTH_SECRET`.
 
 1. Run `dashing start` and go to `localhost:3030`.
 
