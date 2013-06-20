@@ -1,24 +1,28 @@
 
 # Carbometer
-Carbometer is based on the [dashing](http://shopify.github.com/dashing)
-framework. See their website for widget authoring information. In
-addition [Carbometrics](https://github.com/carbonfive/carbometrics) is
-used as an API server for retrieving data used for the dashboards.
+Carbometer is built on the [dashing](http://shopify.github.com/dashing)
+framework. See the project page for widget authoring information.
+
+Carbometer uses [Carbometrics](https://github.com/carbonfive/carbometrics)
+as the API server for retrieving data used for the dashboards.
 
 ## Setup
-1. Clone and run
-   [Carbometrics](https://github.com/carbonfive/carbometrics)
-2. Clone and run Carbometer
+1. Clone and run [Carbometrics](https://github.com/carbonfive/carbometrics)
+1. Set up environment variables
 
-### Required Environment Variables
-1. `CARBOMETRICS_HOSTNAME`
-    Host name for Carbometrics
+  1. `CARBOMETRICS_HOSTNAME`: Set this to point to the backend API. If not
+      specified, then Carbometrics will default to `localhost:3000`.
 
-2. `TIMESHEET_HOSTNAME`
-   Host name for Timesheet. By default, Timesheet communication is over ssl. Therefore do not include the protocol in the Hostname (i.e. https://).
+  1. `TIMESHEET_HOSTNAME`: The hostname for Timesheet. By default, Timesheet
+      communication is over ssl, so don't include the protocol in the hostname.
 
-3. `TIMESHEET_API_TOKEN`
-   API token for Timesheet
+  1. `TIMESHEET_API_TOKEN`: Generate an API token from within your Timesheet
+      account and set it here.
+
+  1. `TWITTER_CONSUMER_KEY`, `TWITTER_CONSUMER_SECRET`, `TWITTER_OAUTH_KEY`
+     and `TWITTER_OAUTH_SECRET`.
+
+1. Run `dashing start` and go to `localhost:3030`.
 
 ## Deployment
 
