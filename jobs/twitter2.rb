@@ -1,30 +1,33 @@
-require 'typhoeus'
-require 'json'
-require 'cgi'
+require 'twitter'
 
-SCHEDULER.every '10m', :first_in => 0 do |job|
-  tweets = []
-  search_terms = ['carbonfive', 'Carbon Five']
-  search_terms.each do |term|
-    response = Typhoeus.get "search.twitter.com/search.json?q=%22#{URI::encode term}%22"
-    JSON(response.body)["results"].each do |result|
-      tweets << result
-    end
+credentials_present =
+  ENV['TWITTER_CONSUMER_KEY'] && ENV['TWITTER_CONSUMER_SECRET'] &&
+  ENV['TWITTER_OAUTH_TOKEN'] && ENV['TWITTER_OAUTH_SECRET']
+
+if credentials_present
+  Twitter.configure do |config|
+    config.consumer_key       = ENV['TWITTER_CONSUMER_KEY']
+    config.consumer_secret    = ENV['TWITTER_CONSUMER_SECRET']
+    config.oauth_token        = ENV['TWITTER_OAUTH_TOKEN']
+    config.oauth_token_secret = ENV['TWITTER_OAUTH_SECRET']
   end
-  if tweets
-    tweets.uniq!
-    tweets.map! do |tweet|
-      tweet_body = tweet['text']
-      tweet_body.gsub!(/(.{1})(https?:\/\/[.\/\+=\w]+)([\s]?)/,"\\1<a href='\\2'>\\2</a>\\3")
-      tweet_body.gsub!(/(^|\s+)(@)(\w+)/,"\\1<a href='//twitter.com/\\3'>\\2\\3</a>")
-      tweet_body.gsub!(/(^|\s+)(#)(\w+)/,"\\1<a href='//twitter.com/search?q=%23\\3&src=hash'>\\2\\3</a>")
 
-      tweet_date = Date.parse(tweet['created_at']).strftime("%d %B %Y")
-
-      { name: tweet['from_user'], body: tweet_body, avatar: tweet['profile_image_url_https'], date: tweet_date }
-    end
+  SCHEDULER.every '10m', :first_in => 0 do |job|
+    tweets = ['carbonfive', '"Carbon Five"'].map do |query|
+      Twitter.search(URI::encode(query)).results.map do |tweet|
+        {
+          name: tweet.user.name,
+          body: tweet.text,
+          avatar: tweet.user.profile_image_url_https(:thumbnail),
+          date: tweet.created_at.strftime("%d %B %Y")
+        }
+      end
+    end.flatten
 
     send_event('carbonfive-tweets2', tweets: tweets)
   end
+else
+  puts "-------------------------------------------------------------------------"
+  puts " Twitter ENV vars were not found. Widget will be blank.                  "
+  puts "-------------------------------------------------------------------------"
 end
-

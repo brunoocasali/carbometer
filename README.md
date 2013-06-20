@@ -10,7 +10,7 @@ as the API server for retrieving data used for the dashboards.
 1. Clone and run [Carbometrics](https://github.com/carbonfive/carbometrics)
 1. Set up environment variables
 
-  1. `CARBOMETRICS_HOSTNAME`: Set this to point to the backend API. If not 
+  1. `CARBOMETRICS_HOSTNAME`: Set this to point to the backend API. If not
       specified, then Carbometrics will default to `localhost:3000`.
 
   1. `TIMESHEET_HOSTNAME`: The hostname for Timesheet. By default, Timesheet
@@ -18,6 +18,9 @@ as the API server for retrieving data used for the dashboards.
 
   1. `TIMESHEET_API_TOKEN`: Generate an API token from within your Timesheet
       account and set it here.
+
+  1. `TWITTER_CONSUMER_KEY`, `TWITTER_CONSUMER_SECRET`, `TWITTER_OAUTH_KEY`
+     and `TWITTER_OAUTH_SECRET.
 
 1. Run `dashing start` and go to `localhost:3030`.
 
