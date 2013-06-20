@@ -19,5 +19,5 @@ SCHEDULER.every '10m', :first_in => 0 do |job|
     end
   end.flatten
 
-  send_event('carbonfive-tweets2', tweets: tweets)
+  send_event('carbonfive-tweets', tweets: tweets)
 end

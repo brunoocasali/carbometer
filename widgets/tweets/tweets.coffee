@@ -1,11 +1,11 @@
-class Dashing.Tweets2 extends Dashing.Widget
+class Dashing.Tweets extends Dashing.Widget
 
   @accessor 'quote', ->
     "#{@get('current_tweet')?.body}"
 
   ready: ->
     @currentIndex = 0
-    @tweetElem = $(@node).find('.tweet-container')
+    @tweetElem = $(@node).find('.tweet-info')
     @nextTweet()
     @startCarousel()
 
@@ -17,6 +17,7 @@ class Dashing.Tweets2 extends Dashing.Widget
 
   nextTweet: =>
     tweets = @get('tweets')
+    console.log @tweetElem
     if tweets
       @tweetElem.fadeOut =>
         @currentIndex = (@currentIndex + 1) % tweets.length
