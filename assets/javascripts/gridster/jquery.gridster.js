@@ -701,8 +701,8 @@
         extra_cols: 0,
         min_cols: 1,
         min_rows: 15,
-        max_size_x: 6,
-        max_size_y: 6,
+        max_size_x: 16,
+        max_size_y: 9,
         autogenerate_stylesheet: true,
         avoid_overlapped_widgets: true,
         serialize_params: function($w, wgd) {

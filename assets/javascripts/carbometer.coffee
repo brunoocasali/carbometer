@@ -1,7 +1,7 @@
 window.Carbometer = {}
 
 Carbometer.minWidth = 960
-Carbometer.rowHeight = 140
+Carbometer.rowHeight = 70
 
 Carbometer.onReady = ->
 

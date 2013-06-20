@@ -1,0 +1,79 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$light-orange: #FDDFB3;
+$flamingo-red: #F05A28;
+$white: #FFFFFF;
+
+// ----------------------------------------------------------------------------
+// Widget-tweet styles
+// ----------------------------------------------------------------------------
+.widget.widget-tweetrow {
+  border: 10px solid rgba(0, 173, 238, .2);
+  padding: 0 0 0 30px;
+  vertical-align: top;
+
+  img,
+  .tweet-container {
+    float: left;
+    margin-top: 30px;
+  }
+
+  .tweet-info {
+    line-height: 1.2em;
+    margin: 26px 0 0 30px;
+    text-align: left;
+    height: 45px;
+    float: left;
+    // border: 1px solid red;
+    padding-right: 30px;
+    border-right: 3px solid rgba(240,90,40,0.3);
+    border-left: 3px solid rgba(240,90,40,0.3);
+    padding-left: 30px;
+  }
+
+  .tweet-content {
+    line-height: 1.2em;
+    margin: 30px 0 0 0;
+    text-align: left;
+    height: 60px;
+    width: 1400px;
+    float: left;
+    // border: 1px solid green;
+    padding-left: 30px;
+  }
+
+  h3,
+    .date {
+      color: $white;
+    }
+
+    .name {
+      font-family: "brandon-grotesque",sans-serif;
+      font-style: normal;
+      text-transform: uppercase;
+      color: $white;
+    }
+
+    .date {
+      font-family: "brandon-grotesque",sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: .8em;
+      padding-left: 27px;
+      color: $flamingo-red;
+
+    }
+
+    .tweet {
+      font-family: "brandon-grotesque",sans-serif;
+      font-size: 1.45rem;
+      line-height: 1.9rem;
+      font-weight: 300;
+      font-style: normal;
+
+      a {
+        color: $flamingo-red;
+      }
+    }
+}
