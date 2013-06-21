@@ -12,6 +12,7 @@ SCHEDULER.every '10m', :first_in => 0 do |job|
     Twitter.search(URI::encode(query)).results.map do |tweet|
       {
         name: tweet.user.name,
+        handle: tweet.user.screen_name,
         body: tweet.text,
         avatar: tweet.user.profile_image_url_https(:thumbnail),
         date: tweet.created_at.strftime("%d %B %Y")
