@@ -17,7 +17,6 @@ class Dashing.Tweets extends Dashing.Widget
 
   nextTweet: =>
     tweets = @get('tweets')
-    console.log @tweetElem
     if tweets
       @tweetElem.fadeOut =>
         @currentIndex = (@currentIndex + 1) % tweets.length

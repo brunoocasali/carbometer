@@ -12,6 +12,8 @@ $white: #FFFFFF;
   border: 10px solid rgba(0, 173, 238, .2);
   padding: 0 0 0 30px;
   vertical-align: top;
+  white-space: nowrap;
+  overflow: hidden;
 
   img,
   .tweet-container {
@@ -41,6 +43,7 @@ $white: #FFFFFF;
     float: left;
     // border: 1px solid green;
     padding-left: 30px;
+    overflow: hidden;
   }
 
   h3,
@@ -48,7 +51,7 @@ $white: #FFFFFF;
       color: $white;
     }
 
-    .name {
+    .handle {
       font-family: "brandon-grotesque",sans-serif;
       font-style: normal;
       text-transform: uppercase;

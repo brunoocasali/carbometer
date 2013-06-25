@@ -10,6 +10,7 @@ SCHEDULER.every '1m', :first_in => '10s' do |job|
   handle_posts host
   handle_projects host
   handle_contributions host
+  handle_galleries host
 end
 
 def handle_locations(host)
@@ -33,6 +34,16 @@ def handle_instagrams(host)
 
   images.each_with_index do |image, index|
     send_event("instagram-#{index+1}", { url: image['url'], username: image['username'] })
+  end
+end
+
+def handle_galleries host
+  response = Typhoeus.get "#{host}/api/v1/galleries.json", followlocation: true
+  galleries = JSON response.body
+
+  galleries.each_with_index do |gallery, index|
+    images =  gallery['images'].map{|image| image['url']}
+    send_event("gallery-#{index+1}", images: images)
   end
 end
 
