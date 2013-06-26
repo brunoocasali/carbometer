@@ -1,4 +1,5 @@
 class Dashing.Gallery extends Dashing.Widget
   ready: ->
     $(".rslides").responsiveSlides
-      timeout: 5000
+      speed: 2500
+      timeout: 8000
