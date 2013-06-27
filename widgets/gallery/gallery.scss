@@ -3,7 +3,21 @@
   background: white;
 
   h1 {
-    display: none;
+    font-family: "brandon-grotesque",sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-align: left;
+    color: white;
+    background: rgba(0, 0, 0, .5);
+    width: 450px;
+    bottom: 10px;
+    margin-bottom: 0;
+    padding-left: 10px;
+    position: absolute;
+    z-index: 10;
+    
   }
 
   img {
