@@ -42,8 +42,7 @@ def handle_galleries host
   galleries = JSON response.body
 
   galleries.each_with_index do |gallery, index|
-    images =  gallery['images'].map{|image| image['url']}
-    send_event("gallery-#{index+1}", name: gallery['name'], images: images)
+    send_event("gallery-#{index+1}", gallery)
   end
 end
 

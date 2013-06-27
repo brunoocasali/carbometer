@@ -1,4 +1,7 @@
 <h1 class="title" data-bind="name | raw"></h1>
 <ul class='rslides'>
-  <li data-foreach-image='images'><img data-bind-src='image' /></li>
+  <li data-foreach-image='images'>
+    <img data-bind-src='image.url' />
+    <p data-bind='image.caption'></p>
+  </li>
 </ul>
