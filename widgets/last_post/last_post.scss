@@ -49,6 +49,14 @@ $grey: #464646;
   	// border: 1px solid green;
   }
 
+  &.b-0 .full-img {
+    background: transparent url(/assets/thedude.jpg) no-repeat;
+
+    h1, .counter {
+      display: none;
+    }
+  }
+
   &.b-1 .full-img {
   	background: transparent url(/assets/steve.jpg) no-repeat;
   }
