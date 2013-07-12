@@ -12,9 +12,9 @@ $cerulean-blue: #00adee;
 .widget-list2 {
   background-color: #fff;
   font-family: "brandon-grotesque",sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-style: normal;
-  padding-bottom: 15px;
+  padding-bottom: 10px;
   vertical-align: top;
 
   h1 {
@@ -26,7 +26,7 @@ $cerulean-blue: #00adee;
     font-weight: bold;
     line-height: 1.0em;
     margin-bottom: 25px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     text-align: left;
     text-transform: uppercase;
   }
@@ -39,16 +39,13 @@ $cerulean-blue: #00adee;
   li {
     color: $oslo-gray;
     font-size: .8em;
-    margin-bottom: 5px;
-
-    hr {
-      background: transparent url(/assets/dotted-hr.png);
-      border: none;
-      float: left;
-      height: 1px;
-      margin: 5px 0;
-      width: 100%;
+    line-height: 1.85em;
+    background: transparent url(/assets/dotted-hr.png) 0 100% repeat-x;
+    
+    &:last-child {
+      background: none;
     }
+
   }
 
   .label {
