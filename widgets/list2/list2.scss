@@ -1,16 +1,17 @@
 // ----------------------------------------------------------------------------
 // Sass declarations
 // ----------------------------------------------------------------------------
-$flamingo-red: #F05A28;
+$flamingo-red: rgba(240,90,40,.7);
 $abbey-gray: #58595b;
 $oslo-gray: #929497;
-$cerulean-blue: #00adee;
+$cerulean-blue: rgba(0,173,234,.5);
 
 // ----------------------------------------------------------------------------
 // Widget-list styles
 // ----------------------------------------------------------------------------
 .widget-list2 {
-  background-color: #fff;
+  // background-color: #fff;
+  border: rgba(255,255,255,.2) 1px solid;
   font-family: "brandon-grotesque",sans-serif;
   font-size: 1.4rem;
   font-style: normal;
