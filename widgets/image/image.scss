@@ -9,7 +9,8 @@ $cerulean: #00ADEE;
 // ----------------------------------------------------------------------------
 .widget-image {
   $widget-padding: 10px;
-  background-color: $pure-white;
+  // background-color: $pure-white;
+  border: rgba(255,255,255,.2) 1px solid;
   font-family: adobe-caslon-pro, serif;
   padding: $widget-padding;
 
@@ -26,7 +27,7 @@ $cerulean: #00ADEE;
     left: $widget-padding;
     padding: 5px 10px 0px 10px;
     position: absolute;
-    bottom: $widget-padding;
+    bottom: 11px;
     margin-left: 15px;
     float: left;
   }

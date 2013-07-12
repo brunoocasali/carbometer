@@ -10,8 +10,9 @@ $cerulean: #00ADEE;
 // ----------------------------------------------------------------------------
 .widget.widget-hoursbasic {
   text-align: left;
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(9,173,238,0)), to(rgba(9,173,238,.2)));
+  // background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(9,173,238,0)), to(rgba(9,173,238,.2)));
   vertical-align: top;
+  border: rgba(255,255,255,.2) 1px solid;
 
   h1 {
     font-family: "brandon-grotesque",sans-serif;
@@ -21,7 +22,7 @@ $cerulean: #00ADEE;
     line-height: 1em;
     text-align: left;
     text-transform: uppercase;
-    color: $white;
+    color: rgba(255,255,255,.5);
     margin-bottom: 20px;
     padding-bottom: 5px;
   }
@@ -74,7 +75,7 @@ $cerulean: #00ADEE;
       font-size: 1.2rem;
       line-height: .5em;
       text-align: left;
-      color: $white;
+      color: rgba(255,255,255,.3);
       margin-top: 10px;
     }
   }

@@ -11,7 +11,8 @@ $pure-white: #ffffff;
 // Widget-list styles
 // ----------------------------------------------------------------------------
 .widget-categories {
-  background-color: $cerulean-blue;
+  // background-color: $cerulean-blue;
+  border: rgba(255,255,255,.2) 1px solid;
   color: $pure-white;
   font-family: "brandon-grotesque",sans-serif;
   font-style: normal;
@@ -19,8 +20,9 @@ $pure-white: #ffffff;
   vertical-align: top;
 
   h1 {
-    border-bottom: 1px solid $pure-white;
+    border-bottom: 1px solid rgba(255,255,255,.3);
     font-family: "brandon-grotesque",sans-serif;
+    color: rgba(255,255,255,.5);
     font-size: 3rem;
     font-style: normal;
     font-weight: 700;
@@ -33,6 +35,7 @@ $pure-white: #ffffff;
   }
   table tr {
     background: transparent url(/assets/white-hr.png) repeat-x 0 100%;
+    opacity: .3;
   }
   table tr td.category-name {
     text-align: left;

@@ -2,14 +2,16 @@
 // Sass declarations
 // ----------------------------------------------------------------------------
 $light-orange: #FDDFB3;
-$flamingo-red: #F05A28;
+$flamingo-red: rgba(240,90,40,.7);
 $white: #FFFFFF;
+$cerulean: rgba(0,173,234,.7);
 
 // ----------------------------------------------------------------------------
 // Widget-tweet styles
 // ----------------------------------------------------------------------------
 .widget.widget-tweets {
-  border: 10px solid rgba(0, 173, 238, .2);
+  border: rgba(255,255,255,.2) 1px solid;
+  // background: $white;
   padding: 0 0 0 30px;
   vertical-align: top;
   white-space: nowrap;
@@ -55,7 +57,7 @@ $white: #FFFFFF;
       font-family: "brandon-grotesque",sans-serif;
       font-style: normal;
       text-transform: uppercase;
-      color: $white;
+      color: $cerulean;
     }
 
     .date {
@@ -74,6 +76,7 @@ $white: #FFFFFF;
       line-height: 1.9rem;
       font-weight: 300;
       font-style: normal;
+      color: $cerulean;
 
       a {
         color: $flamingo-red;
