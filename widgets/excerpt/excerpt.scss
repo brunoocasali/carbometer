@@ -3,14 +3,16 @@
 // ----------------------------------------------------------------------------
 $flamingo-red: #F05A28;
 $abbey-gray: #58595b;
-$oslo-gray: #929497;
-$cerulean-blue: #00adee;
+$oslo-gray: rgba(120,120,120,.8);
+$cerulean-blue: rgba(0,173,234,.5);
+$white: #ffffff;
 
 // ----------------------------------------------------------------------------
 // Widget-text styles
 // ----------------------------------------------------------------------------
 .widget-excerpt {
-  background-color: #fff;
+  // background: $white;
+  border: rgba(255,255,255,.2) 1px solid;
   color: $oslo-gray;
   padding-bottom: 15px;
   padding-top: 80px;
@@ -45,7 +47,8 @@ $cerulean-blue: #00adee;
   }
 
   .post-details {
-    font-size: 1.125rem;
+    color: rgba(240,90,40,.7);
+    font-size: 1.3rem;
     margin-bottom: 1em;
     float: none;
     overflow: hidden;

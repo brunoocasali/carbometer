@@ -3,14 +3,15 @@
 // ----------------------------------------------------------------------------
 $header-blue: #0099ec;
 $text-gray: #454649;
-$cerulean-blue: #00adee;
+$cerulean-blue: rgba(0,173,234,.5);
+$white: #ffffff;
 
 // Widget-leaderboard styles
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 .widget.widget-posts {
-  background-color: white;
-  // background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(105,55,15,0.2)), to(rgba(105,55,15,.5)));
+  // background: $white;
+  border: rgba(255,255,255,.2) 1px solid;
   color: $text-gray;
   font-family: helvetica;
   font-size: 1.2rem;
@@ -56,7 +57,7 @@ $cerulean-blue: #00adee;
   }
 
   .post-details {
-    font-size: 1em;
+    font-size: 1.15em;
     margin-top: 15px;
     width: 100%;
   }

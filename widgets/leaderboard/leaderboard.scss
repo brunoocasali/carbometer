@@ -5,14 +5,14 @@ $title-color:       rgba(255, 255, 255, 0.7);;
 $moreinfo-color:    rgba(255, 255, 255, 0.7);;
 $header-blue: #0099ec;
 $text-gray: #454649;
-$cerulean-blue: #00adee;
+$cerulean: rgba(0,173,234,.5);
 
 // Widget-leaderboard styles
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 .widget.widget-leaderboard {
-  // background-color: #333;
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(9,173,238,0.07)), to(rgba(9,173,238,.2)));
+  // background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(9,173,238,0.07)), to(rgba(9,173,238,.2)));
+  border: rgba(255,255,255,.2) 1px solid;
   color: $text-gray;
   font-family: helvetica;
   font-size: 1.2rem;
@@ -22,8 +22,8 @@ $cerulean-blue: #00adee;
   vertical-align: top;
 
   h1 {
-    border-bottom: 1px solid $cerulean-blue;
-    color: $cerulean-blue;
+    border-bottom: 1px solid $cerulean;
+    color: $cerulean;
     font-family: "brandon-grotesque",sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -64,7 +64,7 @@ $cerulean-blue: #00adee;
     font-size: 1em;
     margin-top: 15px;
     width: 100%;
-    color: $cerulean-blue;
+    color: $cerulean;
   }
 
   .visits {

@@ -4,14 +4,15 @@
 $yellow-orange: #faaf40;
 $abbey: #58595B;
 $white: #ffffff;
-$cerulean: #00ADEE;
+$cerulean: rgba(0,173,234,.5);
 
 // Widget-leaderboard styles
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 .widget.widget-fridge {
   text-align: left;
-  background-color: $white;
+  // background-color: $white;
+  border: rgba(255,255,255,.2) 1px solid;
   vertical-align: top;
 
   h1 {

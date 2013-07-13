@@ -2,7 +2,7 @@
 // Sass declarations
 // ----------------------------------------------------------------------------
 $white: #ffffff;
-$grey: #464646;
+$grey: rgba(120,120,120,.1);
 
 // Widget-last-post styles
 // ----------------------------------------------------------------------------
@@ -10,7 +10,8 @@ $grey: #464646;
 .widget.widget-last-post {
   padding: 10px;
   text-align: center;
-  background: $white;
+  // background: $white;
+  border: rgba(255,255,255,.2) 1px solid;
   vertical-align: top;
 
   .full-img {
