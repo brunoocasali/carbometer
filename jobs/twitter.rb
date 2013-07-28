@@ -7,8 +7,10 @@ Twitter.configure do |config|
   config.oauth_token_secret = ENV['TWITTER_OAUTH_SECRET']
 end
 
-SCHEDULER.every '10m', :first_in => 0 do |job|
-  tweets = ['carbonfive', '"Carbon Five"'].map do |query|
+SCHEDULER.every '10m', first_in: rand(20) do |job|
+  puts "Running #{File.basename(__FILE__)}"
+
+  tweets = ['carbonfive', '"Carbon Five"'].map { |query|
     Twitter.search(URI::encode(query)).results.map do |tweet|
       {
         name: tweet.user.name,
@@ -18,7 +20,7 @@ SCHEDULER.every '10m', :first_in => 0 do |job|
         date: tweet.created_at.strftime("%d %B %Y")
       }
     end
-  end.flatten
+  }.flatten
 
   send_event('carbonfive-tweets', tweets: tweets)
 end
