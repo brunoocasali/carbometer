@@ -1,9 +1,10 @@
 require 'typhoeus'
 
-SCHEDULER.every '1m', :first_in => '10s' do |job|
+SCHEDULER.every '1m', first_in: rand(20) do |job|
+  puts "Running #{File.basename(__FILE__)}"
+
   api_token = ENV['TIMESHEET_API_TOKEN']
-  timesheet_host = ENV['TIMESHEET_HOSTNAME']
-  timesheet_host = 'localhost:3333' unless timesheet_host
+  timesheet_host = ENV['TIMESHEET_HOSTNAME'] || 'localhost:3333'
   timesheet_host = "https://#{timesheet_host}" unless timesheet_host.match /^localhost/
 
   if api_token.nil?
