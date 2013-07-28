@@ -2,6 +2,7 @@
 db/*.sqlite3
 log/*.log
 tmp/**/*
+history.yml
 .DS_Store
 .jhw-cache
 .idea
