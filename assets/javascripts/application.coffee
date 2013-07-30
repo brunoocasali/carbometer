@@ -8,7 +8,6 @@
 console.log("Yeah! The dashboard has started!")
 
 Dashing.on 'ready', ->
-  $('.gridster').find('li').not('[data-col]').remove() # Remove weird extra <li> that Dashing adds
   Dashing.widget_margins ||= [5, 5]
   Dashing.widget_base_dimensions ||= [Carbometer.rowHeight, Carbometer.rowHeight]
   Dashing.numColumns ||= 16
