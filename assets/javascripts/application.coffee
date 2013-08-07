@@ -27,4 +27,5 @@ Dashing.on 'ready', ->
   $(window).resize =>
     Carbometer.resizeWidgets()
 
+  Dashing.listen()
   Carbometer.onReady()
