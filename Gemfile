@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby '2.0.0'
 
-gem 'dashing'
+gem 'dashing', github: 'carbonfive/dashing'
 gem 'typhoeus'
 gem 'twitter'
 

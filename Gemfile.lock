@@ -1,3 +1,18 @@
+GIT
+  remote: git://github.com/carbonfive/dashing.git
+  revision: c93ab85a575f1cdef4861dccbd007ca75f37e8b0
+  specs:
+    dashing (1.2.0)
+      coffee-script (>= 1.6.2)
+      rack
+      rufus-scheduler
+      sass
+      sinatra
+      sinatra-contrib
+      sprockets
+      thin
+      thor
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -9,16 +24,6 @@ GEM
     coffee-script-source (1.6.3)
     columnize (0.3.6)
     daemons (1.1.9)
-    dashing (1.1.0)
-      coffee-script (>= 1.6.2)
-      rack
-      rufus-scheduler
-      sass
-      sinatra
-      sinatra-contrib
-      sprockets
-      thin
-      thor
     debugger (1.6.1)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
@@ -45,7 +50,7 @@ GEM
       rack (>= 1.0)
     rufus-scheduler (2.0.23)
       tzinfo (>= 0.3.23)
-    sass (3.2.9)
+    sass (3.2.10)
     simple_oauth (0.2.0)
     sinatra (1.4.3)
       rack (~> 1.4)
@@ -82,7 +87,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
-  dashing
+  dashing!
   debugger
   twitter
   typhoeus
