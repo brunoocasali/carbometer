@@ -1,6 +1,6 @@
 require 'typhoeus'
 
-SCHEDULER.cron '00 17 * * *' do |job|
+SCHEDULER.every '1m', first_in: rand(20) do |job|
   puts "Running #{File.basename(__FILE__)}"
 
   api_token = ENV['TIMESHEET_API_TOKEN']
