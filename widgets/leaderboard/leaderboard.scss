@@ -48,6 +48,11 @@ $cerulean: rgba(0,173,234,.5);
       margin-bottom: 0;
       width: 100%;
     }
+
+    // &:nth-child(8) {
+    //   display: none;
+    // }
+
   }
 
   .post-title {
@@ -62,6 +67,7 @@ $cerulean: rgba(0,173,234,.5);
 
   .post-details {
     font-size: 1em;
+    line-height: 1em;
     margin-top: 15px;
     width: 100%;
     color: $cerulean;
