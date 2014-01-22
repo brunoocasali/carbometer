@@ -1,0 +1,52 @@
+// ----------------------------------------------------------------------------
+// Sass declarations
+// ----------------------------------------------------------------------------
+$title-color:       rgba(255, 255, 255, 0.7);;
+$moreinfo-color:    rgba(255, 255, 255, 0.7);;
+$header-blue: #00adef;
+$text-gray: #454649;
+$cerulean: rgba(0,173,234,.8);
+
+// ----------------------------------------------------------------------------
+// Widget-clock styles
+// ----------------------------------------------------------------------------
+.widget-clock {
+	font-family: "brandon-grotesque",sans-serif;
+  font-style: normal;
+  font-weight: 700;
+	border: rgba(255,255,255,.2) 1px solid;
+  color: $text-gray;
+  font-family: helvetica;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-bottom: 0;
+  text-align: left;
+  vertical-align: top;
+
+  
+
+  h1,h2 {
+  	font-family: "brandon-grotesque",sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+  }
+
+
+  h1 {
+  	padding-top: 50px;
+  	font-size: 5rem;
+  	line-height: 4rem;
+  	color: $cerulean;
+  	
+
+  }
+
+  h2 {
+  	padding-top: -10px;
+  	font-size: 15em;
+  	line-height: 10rem;
+  	color: white;
+  	opacity: .2;
+  }
+}

@@ -35,17 +35,23 @@ $pure-white: #ffffff;
   }
   table tr {
     background: transparent url(/assets/white-hr.png) repeat-x 0 100%;
-    opacity: .3;
+
   }
   table tr td.category-name {
+    color: $cerulean-blue;
+    opacity: .8;
     text-align: left;
     padding: 5px 0;
   }
+
   table tr td.category-users {
+    color: $pure-white;
+    opacity: .5;
     text-align: left;
     padding: 5px 0;
     vertical-align: top;
   }
+
   ol {
     list-style: none;
     text-align: left;

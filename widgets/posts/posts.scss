@@ -3,19 +3,17 @@
 // ----------------------------------------------------------------------------
 $header-blue: #0099ec;
 $text-gray: #454649;
-$cerulean-blue: rgba(0,173,234,.5);
+$cerulean-blue: rgba(0,173,234,.8);
 $white: #ffffff;
 
 // Widget-leaderboard styles
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 .widget.widget-posts {
-  // background: $white;
   border: rgba(255,255,255,.2) 1px solid;
-  color: $text-gray;
+  color: $white;
   font-family: helvetica;
   font-size: 1.2rem;
-  font-weight: bold;
   padding-bottom: 0;
   text-align: left;
   vertical-align: top;
@@ -57,8 +55,20 @@ $white: #ffffff;
   }
 
   .post-details {
+    color: $cerulean-blue;
     font-size: 1.15em;
     margin-top: 15px;
     width: 100%;
   }
+
+  .visits {
+    background: url(/assets/eye_blue.png) no-repeat right center;
+  }
+  .tweets {
+    background: url(/assets/tweety_blue.png) no-repeat right center;
+  }
+  .comments {
+    background: url(/assets/pencil_blue.png) no-repeat right center;
+  }
+  
 }
