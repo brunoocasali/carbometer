@@ -7,4 +7,4 @@ class Dashing.Clock extends Dashing.Widget
   startTime: =>
     now = moment()
     @set('time', now.format('h:mm'))
-    @set('date', now.format('dddd, MMMM d'))
+    @set('date', now.format('dddd, MMMM D'))
