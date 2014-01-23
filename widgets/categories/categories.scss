@@ -22,7 +22,7 @@ $pure-white: #ffffff;
   h1 {
     border-bottom: 1px solid rgba(255,255,255,.3);
     font-family: "brandon-grotesque",sans-serif;
-    color: rgba(255,255,255,.5);
+    color: white;
     font-size: 3rem;
     font-style: normal;
     font-weight: 700;
@@ -35,17 +35,24 @@ $pure-white: #ffffff;
   }
   table tr {
     background: transparent url(/assets/white-hr.png) repeat-x 0 100%;
-    opacity: .3;
+
   }
   table tr td.category-name {
+    color: $cerulean-blue;
+    opacity: .8;
     text-align: left;
     padding: 5px 0;
+    margin-bottom: 15px;
   }
+
   table tr td.category-users {
+    color: $pure-white;
+    opacity: .5;
     text-align: left;
     padding: 5px 0;
     vertical-align: top;
   }
+
   ol {
     list-style: none;
     text-align: left;
@@ -62,7 +69,6 @@ $pure-white: #ffffff;
       border: none;
       height: 1px;
       bottom: 0;
-      margin: 0;
       position: absolute;
       width: 100%;
     }
@@ -73,7 +79,7 @@ $pure-white: #ffffff;
     font-size: 1.8rem;
     font-weight: bold;
     float: left;
-    line-height: 1.0em;
+    line-height: 1.2em;
     text-transform: uppercase;
     width: 235px;
   }

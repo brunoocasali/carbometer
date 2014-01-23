@@ -1,36 +1,27 @@
 <% content_for(:title) { "Carbometer | Screen 1" } %>
 <div class="gridster">
   <ul>
-    <li data-row="1" data-col="1" data-sizex="4" data-sizey="8">
-      <div data-id='carbonfive-projects' data-view='Categories' data-title="Who's<br>on What?"></div>
+    
+    <li data-row="1" data-col="1" data-sizex="8" data-sizey="4">
+      <div data-view='Clock'></div>
     </li>
-    <li data-row="1" data-col="5" data-sizex="4" data-sizey="4">
-      <div data-id='timesheet-status' data-view='Hoursbasic' data-title='Hours<br>of Shame'></div>
-    </li>
-    <li data-row="5" data-col="5" data-sizex="4" data-sizey="4">
+    
+    <li data-row="5" data-col="1" data-sizex="4" data-sizey="4">
       <div data-id='instagram-1' data-view='Image'></div>
     </li>
-    <li data-row="1" data-col="9" data-sizex="4" data-sizey="4">
-      <div data-id='oss-leaderboard' data-view='List2' data-title='Open Source Contributions'></div>
-    </li>
-    <li data-row="5" data-col="9" data-sizex="4" data-sizey="4">
+    
+    <li data-row="5" data-col="5" data-sizex="4" data-sizey="4">
       <div data-id='gallery-1' data-view='Gallery'></div>
     </li>
-    <li data-row="1" data-col="13" data-sizex="4" data-sizey="4">
-      <div data-id='carbonfive-fridge'
-           data-view='Fridge'
-           data-title='In The<br>Fridge'
-           data-location='<%= params.has_key?('location') ? params['location'] : 'sf' %>'>
-      </div>
-    </li>
-    <li data-row="5" data-col="13" data-sizex="4" data-sizey="4">
-      <div data-id='carbonfive-counter'
-           data-view='Counter'
-           data-title='On The<br>Counter'
-           data-location='<%= params.has_key?('location') ? params['location'] : 'sf' %>'>
-      </div>
+
+    <li data-row="1" data-col="9" data-sizex="4" data-sizey="8">
+      <div data-id='carbonfive-projects' data-view='Categories' data-title="Who's<br>on What?"></div>
     </li>
 
+    <li data-row="1" data-col="13" data-sizex="4" data-sizey="8">
+      <div data-id='oss-leaderboard' data-view='List2' data-title='Open Source Contributions'></div>
+    </li>
+    
     <li data-row="9" data-col="1" data-sizex="16" data-sizey="1">
       <div data-id='carbonfive-tweets' data-view='Tweets'></div>
     </li>

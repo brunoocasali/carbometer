@@ -4,7 +4,7 @@
 $flamingo-red: rgba(240,90,40,.7);
 $abbey-gray: #58595b;
 $oslo-gray: #929497;
-$cerulean-blue: rgba(0,173,234,.5);
+$cerulean-blue: rgba(0,173,234,.8);
 
 // ----------------------------------------------------------------------------
 // Widget-list styles
@@ -19,10 +19,11 @@ $cerulean-blue: rgba(0,173,234,.5);
   vertical-align: top;
 
   h1 {
-    border-bottom: 1px solid $cerulean-blue;
-    color: $cerulean-blue;
+    border-bottom: 1px solid rgba(255,255,255,.3);
+    color: white;
     font-family: "brandon-grotesque",sans-serif;
     font-style: normal;
+    font-size: 3rem;
     font-weight: 700;
     font-weight: bold;
     line-height: 1.0em;
@@ -39,8 +40,8 @@ $cerulean-blue: rgba(0,173,234,.5);
 
   li {
     color: $oslo-gray;
-    font-size: .8em;
-    line-height: 1.85em;
+    font-size: 1.2em;
+    line-height: 2.9em;
     background: transparent url(/assets/dotted-hr.png) 0 100% repeat-x;
     
     &:last-child {
@@ -50,7 +51,7 @@ $cerulean-blue: rgba(0,173,234,.5);
   }
 
   .label {
-    color: $flamingo-red;
+    color: $cerulean-blue;
   }
 
   .value {
