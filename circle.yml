@@ -1,3 +1,7 @@
+test:
+  override:
+    - echo "No tests is okay for Carbometer"
+
 deployment:
   acceptance:
     branch: development
