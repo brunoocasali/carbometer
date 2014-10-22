@@ -1,0 +1,18 @@
+test:
+  override:
+    - echo "No tests is okay for Carbometer"
+
+deployment:
+  acceptance:
+    branch: development
+    commands:
+      - '[[ ! -s "$(git rev-parse --git-dir)/shallow" ]] || git fetch --unshallow'
+      - git push -f git@heroku.com:carbometer-acceptance.git $CIRCLE_SHA1:master:
+          timeout: 300
+
+  production:
+    branch: master
+    commands:
+      - '[[ ! -s "$(git rev-parse --git-dir)/shallow" ]] || git fetch --unshallow'
+      - git push -f git@heroku.com:carbometer.git $CIRCLE_SHA1:master:
+          timeout: 300
