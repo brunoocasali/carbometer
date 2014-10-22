@@ -2,7 +2,7 @@ class Dashing.Rotater extends Dashing.Widget
 
   ready: ->
     @rotationLength = 120000
-    @dashboards = [ 'screen1', 'screen2' ]
+    @dashboards = [ 'screen1', 'screen2', 'screen3' ]
     params = Carbometer.params()
     @rotationLength = parseInt(params.rotationLength) if params.rotationLength
     @dashboards = params.dashboards.split(',') if params.dashboards
