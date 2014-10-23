@@ -1,2 +1,0 @@
-<h1 data-bind="vis"></h1>
-<iframe src="http://localhost:8000/stampede2.html"></iframe>
