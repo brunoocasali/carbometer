@@ -1,7 +1,7 @@
 <h1 class="title" data-bind="title | raw"></h1>
 <ul>
   <li class='post' data-foreach-post='posts'>
-    <p class='post-title' data-bind='post.title'></p>
+    <p class='post-title' data-bind='post.title | raw'></p>
     <div class='post-details'>
       <span class='post-date'><span data-bind='post.author_name'></span></span>
       <!-- <span class='post-date'><span data-bind='post.published_at'></span></span> -->
